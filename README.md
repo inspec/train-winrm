@@ -32,7 +32,7 @@ TODO
 
 ## Reporting Issues
 
-Bugs, typos, limitations, and frustrations are welcome to be reported through the [GitHub issues page for the train-aws project](https://github.com/inspec/train-winrm/issues).
+Bugs, typos, limitations, and frustrations are welcome to be reported through the [GitHub issues page for the train-winrm project](https://github.com/inspec/train-winrm/issues).
 
 You may also ask questions in the #inspec channel of the Chef Community Slack team.  However, for an issue to get traction, please report it as a github issue.
 
