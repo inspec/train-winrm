@@ -27,6 +27,31 @@ namespace :test do
       t.warning = false
     end
   end
+
+  task :start_vagrant do |t|
+    # The Vagrantfile relies on a vagrant box that is private to Chef
+    # Consider https://app.vagrantup.com/peru/boxes/windows-server-2016-standard-x64-eval as alternative
+    sh 'vagrant up'
+  end
+
+  task :integration_actual do |t|
+    # TODO Read vars from vagrant?
+    env = ''
+    env +="TRAIN_WINRM_TARGET=winrm://vagrant@127.0.0.1 "
+    env +="TRAIN_WINRM_PASSWORD=vagrant "
+
+    Dir.glob('test/integration/*_test.rb').all? do |file|
+      sh "#{env} #{Gem.ruby} -I ./test/integration #{file}"
+    end or fail 'Failures'
+  end
+
+  task :stop_vagrant do |t|
+    sh 'vagrant destroy --force'
+  end
+
+  desc 'Integration tasks, Vagrant+VirtualBox-based'
+  task :integration => [:start_vagrant, :integration_actual, :stop_vagrant]
+
 end
 
 # #------------------------------------------------------------------#
