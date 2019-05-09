@@ -1,4 +1,7 @@
 # encoding: utf-8
+
+# rubocop: disable Metrics/BlockLength
+
 # author: Christoph Hartmann
 # author: Dominik Richter
 
@@ -14,12 +17,12 @@ describe 'windows winrm command' do
 
     # get final config
     target_config = Train.target_config({
-      target: ENV['TRAIN_WINRM_TARGET'],
+                                          target: ENV['TRAIN_WINRM_TARGET'],
       password: ENV['TRAIN_WINRM_PASSWORD'],
       ssl: ENV['TRAIN_WINRM_SSL'],
       self_signed: true,
       logger: logger,
-    })
+                                        })
 
     # initialize train
     backend = Train.create('winrm', target_config)
@@ -48,7 +51,6 @@ describe 'windows winrm command' do
     cmd.stdout.must_equal "{\r\n    \"A\":  \"PropertyA\",\r\n    \"B\":  \"PropertyB\"\r\n}\r\n"
     cmd.stderr.must_equal ''
   end
-
 
   describe 'using remote files' do
     before do

@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+# rubocop: disable Metrics/BlockLength
+
 require_relative './helper'
 require 'train-winrm/transport'
 require 'logger'
@@ -11,11 +13,12 @@ describe 'winrm transport' do
     Train::Platforms::Detect.stubs(:scan).returns(plat)
     TrainPlugins::WinRM::Transport
   end
-  let(:conf) {{
-    host: rand.to_s,
+  let(:conf) {
+    {
+      host: rand.to_s,
     password: rand.to_s,
-    logger: Logger.new(STDERR, level: :info)
-  }}
+    logger: Logger.new(STDERR, level: :info),
+    }}
   let(:cls_agent) { cls.new({ host: rand.to_s, logger: Logger.new(STDERR, level: :info) }) }
 
   describe 'default options' do
