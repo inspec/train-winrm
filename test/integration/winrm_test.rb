@@ -50,137 +50,141 @@ describe 'windows winrm command' do
   end
 
 
-  describe 'file' do
+  describe 'using remote files' do
     before do
-      @temp = Tempfile.new('foo')
-      @temp.write("hello world")
-      @temp.rewind
+      @remote_path = 'train-winrm-test-' + rand(100000).to_s + '.txt'
     end
 
-    let(:file) { conn.file(@temp.path) }
+    let(:remote_file) do
+      conn.run_command("New-Item -Path . -Name \"#{@remote_path}\" -ItemType \"file\" -Value \"hello world\"")
+      conn.file(@remote_path)
+    end
 
     it 'exists' do
-      file.exist?.must_equal(true)
+      remote_file.exist?.must_equal(true)
     end
 
     it 'is a file' do
-      file.file?.must_equal(true)
+      remote_file.file?.must_equal(true)
     end
 
     it 'has type :file' do
-      file.type.must_equal(:file)
+      remote_file.type.must_equal(:file)
     end
 
     it 'has content' do
       # TODO: this shouldn't include newlines that aren't in the original file
-      file.content.must_equal("hello world\r\n")
+      remote_file.content.must_equal("hello world\r\n")
     end
 
     it 'has owner name' do
-      file.owner.wont_be_nil
+      remote_file.owner.wont_be_nil
     end
 
     it 'has no group name' do
-      file.group.must_be_nil
+      remote_file.group.must_be_nil
     end
 
     it 'has no mode' do
-      file.mode.must_be_nil
-    end
-
-    it 'has the correct md5sum' do
-      # Must create unique file to prevent `ERROR_SHARING_VIOLATION`
-      tempfile = Tempfile.new('tempfile')
-      tempfile.write('easy to hash')
-      tempfile.close
-      conn.file(tempfile.path).md5sum.must_equal 'c15b41ade1221a532a38d89671ffaa20'
-      tempfile.unlink
-    end
-
-    it 'has the correct sha256sum' do
-      # Must create unique file to prevent `ERROR_SHARING_VIOLATION`
-      tempfile = Tempfile.new('tempfile')
-      tempfile.write('easy to hash')
-      tempfile.close
-      conn.file(tempfile.path).sha256sum.must_equal '24ae25354d5f697566e715cd46e1df2f490d0b8367c21447962dbf03bf7225ba'
-      tempfile.unlink
+      remote_file.mode.must_be_nil
     end
 
     it 'has no modified time' do
-      file.mtime.must_be_nil
+      remote_file.mtime.must_be_nil
     end
 
     it 'has size' do
-      file.size.wont_be_nil
+      remote_file.size.wont_be_nil
     end
 
     it 'has size 11' do
-      size = ::File.size(@temp)
-      file.size.must_equal size
+      remote_file.size.must_equal 11
     end
 
     it 'has no selinux_label handling' do
-      file.selinux_label.must_be_nil
+      remote_file.selinux_label.must_be_nil
     end
 
     it 'has product_version' do
-      file.product_version.wont_be_nil
+      remote_file.product_version.wont_be_nil
     end
 
     # TODO: This is not failing in manual testing
     # it 'returns basname of file' do
-    #   basename = ::File.basename(@temp)
-    #   file.basename.must_equal basename
+    #   basename = ::File.basename(@local_file)
+    #   remote_file.basename.must_equal basename
     # end
 
     it 'has file_version' do
-      file.file_version.wont_be_nil
+      remote_file.file_version.wont_be_nil
     end
 
     it 'returns nil for mounted' do
-      file.mounted.must_be_nil
+      remote_file.mounted.must_be_nil
     end
 
     it 'has no link_path' do
-      file.link_path.must_be_nil
+      remote_file.link_path.must_be_nil
     end
 
     it 'has no uid' do
-      file.uid.must_be_nil
+      remote_file.uid.must_be_nil
     end
 
     it 'has no gid' do
-      file.gid.must_be_nil
+      remote_file.gid.must_be_nil
     end
 
     it 'provides a json representation' do
-      j = file.to_json
+      j = remote_file.to_json
       j.must_be_kind_of Hash
       j['type'].must_equal :file
     end
 
     after do
-      @temp.close
-      @temp.unlink
+      conn.run_command("Remove-Item -Path \"#{@remote_path}\"")
     end
   end
 
-  describe 'file' do
+  describe 'hashing methods' do
     before do
-      @temp = Tempfile.new('foo bar')
-      @temp.write("hello world")
-      @temp.rewind
+      @remote_path = 'train-winrm-hash-test-' + rand(100000).to_s + '.txt'
     end
 
-    let(:file) { conn.file(@temp.path) }
+    let(:remote_file) do
+      conn.run_command("New-Item -Path . -Name \"#{@remote_path}\" -ItemType \"file\" -Value \"easy to hash\"")
+      conn.file(@remote_path)
+    end
 
-    it 'provides the full path with whitespace for path #{@temp.path}' do
-      file.path.must_equal @temp.path
+    it 'has the correct md5sum' do
+      remote_file.md5sum.must_equal 'c15b41ade1221a532a38d89671ffaa20'
+    end
+
+    it 'has the correct sha256sum' do
+      remote_file.sha256sum.must_equal '24ae25354d5f697566e715cd46e1df2f490d0b8367c21447962dbf03bf7225ba'
     end
 
     after do
-      @temp.close
-      @temp.unlink
+      conn.run_command("Remove-Item -Path \"#{@remote_path}\"")
+    end
+  end
+
+  describe 'a file with whitespace in the path' do
+    before do
+      # This is just being used to generate a randomized path
+      @local_file = Tempfile.new('foo bar')
+    end
+
+    let(:remote_file) { conn.file(@local_file.path) }
+
+    it 'provides the full path with whitespace' do
+      # No implication that it exists
+      remote_file.path.must_equal @local_file.path
+    end
+
+    after do
+      @local_file.close
+      @local_file.unlink
     end
   end
 
