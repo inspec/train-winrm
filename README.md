@@ -84,6 +84,12 @@ If you wish to contribute to this plugin, please use the usual fork-branch-push-
 
 [Plugin Development](https://github.com/inspec/train/blob/master/docs/dev/plugins.md) is documented on the `train` project on GitHub.
 
+### Unit tests
+
+Run `bundle exec rake test:unit` to run the unit tests.
+
 ### Testing changes against a Windows Machine
 
-TODO
+Install Vagrant and VirtualBox. Check the Vagrantfile to verify it references a Windows 2016 evaluation VagrantBox to which you have access.
+
+Then run `bundle exec rake test:integration` . There are sub-tasks you can use to run only the integration tests; see `rake -aT`.
