@@ -3,3 +3,4 @@ Gemfile.local.lock
 *.gem
 .github/labels-in-terraform/.terraform
 Gemfile.lock
+.vagrant
