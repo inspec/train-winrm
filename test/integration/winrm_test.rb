@@ -7,7 +7,6 @@
 
 require 'minitest/autorun'
 require 'train'
-require 'train'
 require 'byebug'
 require 'logger'
 
