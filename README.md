@@ -1,5 +1,9 @@
 # train-winrm - Train Plugin for connecting to Windows via Remote Management
 
+* **Project State: Active**
+* **Issues Response SLA: 3 business days**
+* **Pull Request Response SLA: 3 business days**
+
 This plugin allows applications that rely on Train to communicate with the WinRM API.  For example, you could use this to audit Windows Server 2016 machines.
 
 This plugin relies on the `winrm` and `winrm-fs` gems for implementation.
@@ -14,7 +18,7 @@ Train plugins may be developed without a Chef InSpec installation.
 
 After June 2019, this plugin will be distributed with ChefDK; you do not need to install it separately.
 
-### Manual Installation
+### Manual Installation using `inspec plugin install`
 
 Train plugins are distributed as gems.  You may choose to manage the gem yourself, but if you are an Chef InSpec user, Chef InSpec can handle it for you.
 
@@ -35,8 +39,14 @@ you@home $ inspec some-profile winrm://someuser@somehost --password somepassword
 From Ruby code, you may use this plugin as follows:
 ```
 require 'train'
-transport = Train.create('winrm',
-  host: '1.2.3.4', user: 'Administrator', password: '...', ssl: true, self_signed: true)
+transport = Train.create(
+  'winrm',
+  host: '1.2.3.4',
+  user: 'Administrator',
+  password: '...',
+  ssl: true,
+  self_signed: true
+)
 conn = transport.connection
 ```
 
@@ -44,7 +54,7 @@ conn = transport.connection
 
 ### host
 
-Required `String`. The hostname or IP address to connect to.
+Required `String`. The hostname or IP address used for connection.
 
 #### port
 
@@ -52,17 +62,17 @@ Optional `Integer`, default 5985 (plain) or 5896 (SSL). The port number to which
 
 ### user
 
-Optional `String`, username to connect as.  Default 'Administrator'.
+Optional `String`, username used for sign in.  Default `Administrator`.
 
 ### password
 
-Optional `String`, password to use to connect. None sent if not provided.
+Optional `String`, password used for sign in. None sent if not provided.
 
 ### ssl
 
-Optional `Boolean`, defaults to `false`. Whether to use SSL to encrypt communications.
+Optional `Boolean`. Defaults to `false`. Determines whether to use SSL to encrypt communications.
 
-Several other options exist; run:
+Several other options exist. To see these options, run:
 
 ```
 puts Train.options('winrm')
@@ -90,6 +100,6 @@ Run `bundle exec rake test:unit` to run the unit tests.
 
 ### Testing changes against a Windows Machine
 
-Install Vagrant and VirtualBox. Check the Vagrantfile to verify it references a Windows 2016 evaluation VagrantBox to which you have access.
+Install Vagrant and VirtualBox. Check the Vagrantfile to verify that it references a Windows 2016 evaluation VagrantBox to which you have access.
 
-Then run `bundle exec rake test:integration` . There are sub-tasks you can use to run only the integration tests; see `rake -aT`.
+Then, run `bundle exec rake test:integration`. There are sub-tasks you can use to run only the integration tests; to see a list of all tasks, run `rake -aT`.
