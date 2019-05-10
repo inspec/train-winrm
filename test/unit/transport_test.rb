@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # rubocop: disable Metrics/BlockLength
 
 require_relative './helper'
