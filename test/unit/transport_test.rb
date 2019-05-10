@@ -11,12 +11,13 @@ describe 'winrm transport' do
     Train::Platforms::Detect.stubs(:scan).returns(plat)
     TrainPlugins::WinRM::Transport
   end
-  let(:conf) {
+  let(:conf) do
     {
       host: rand.to_s,
-    password: rand.to_s,
-    logger: Logger.new(STDERR, level: :info),
-    }}
+      password: rand.to_s,
+      logger: Logger.new(STDERR, level: :info),
+    }
+  end
   let(:cls_agent) { cls.new({ host: rand.to_s, logger: Logger.new(STDERR, level: :info) }) }
 
   describe 'default options' do
