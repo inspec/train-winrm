@@ -13,11 +13,12 @@ describe 'winrm connection' do
     Train::Platforms::Detect.stubs(:scan).returns(plat)
     TrainPlugins::WinRM::Connection
   end
-  let(:conf) {
+  let(:conf) do
     {
       hostname: rand.to_s,
-    logger: Logger.new(STDERR, level: :info),
-    }}
+      logger: Logger.new(STDERR, level: :info),
+    }
+  end
   describe '#run_command_via_connection through BaseConnection::run_command' do
     let(:winrm) { cls.new(conf) }
     let(:session_mock) {

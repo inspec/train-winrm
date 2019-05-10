@@ -13,13 +13,13 @@ describe 'windows winrm command' do
     logger = Logger.new(STDERR, level: (ENV['TRAIN_WINRM_LOGLEVEL'] || :info))
 
     # get final config
-    target_config = Train.target_config({
-                                          target: ENV['TRAIN_WINRM_TARGET'],
+    target_config = Train.target_config(
+      target: ENV['TRAIN_WINRM_TARGET'],
       password: ENV['TRAIN_WINRM_PASSWORD'],
       ssl: ENV['TRAIN_WINRM_SSL'],
       self_signed: true,
       logger: logger,
-                                        })
+    )
 
     # initialize train
     backend = Train.create('winrm', target_config)
