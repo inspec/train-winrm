@@ -33,8 +33,8 @@
 # * marshalling to / from JSON
 # You don't have to worry about most of this.
 
-require 'train'
-require 'train/plugins'
+require "train"
+require "train/plugins"
 
 module TrainPlugins
   module WinRM
@@ -61,7 +61,7 @@ module TrainPlugins
 
       # (see Base::Connection#login_command)
       def login_command
-        case RbConfig::CONFIG['host_os']
+        case RbConfig::CONFIG["host_os"]
         when /darwin/
           login_command_for_mac
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
@@ -69,7 +69,7 @@ module TrainPlugins
         when /linux/
           login_command_for_linux
         else
-          fail ActionFailed,
+          raise ActionFailed,
                "Remote login not supported in #{self.class} " \
                "from host OS '#{RbConfig::CONFIG['host_os']}'."
         end
@@ -91,7 +91,7 @@ module TrainPlugins
         delay = 3
         session(
           retry_limit: @max_wait_until_ready / delay,
-          retry_delay: delay,
+          retry_delay: delay
         )
         run_command_via_connection(PING_COMMAND.dup)
       end
@@ -111,7 +111,7 @@ module TrainPlugins
       def run_command_via_connection(command, &data_handler)
         return if command.nil?
         logger.debug("[WinRM] #{self} (#{command})")
-        out = ''
+        out = ""
 
         response = session.run(command) do |stdout, _|
           yield(stdout) if data_handler && stdout
@@ -131,7 +131,7 @@ module TrainPlugins
         host = URI.parse(options[:endpoint]).host
         content = [
           "full address:s:#{host}:#{@rdp_port}",
-          'prompt for credentials:i:1',
+          "prompt for credentials:i:1",
           "username:s:#{options[:user]}",
         ].join("\n")
 
@@ -157,10 +157,10 @@ module TrainPlugins
       # @return [LoginCommand] a login command
       # @api private
       def login_command_for_linux
-        args  = %W(-u #{options[:user]})
-        args += %W(-p #{options[:pass]}) if options.key?(:pass)
-        args += %W(#{URI.parse(options[:endpoint]).host}:#{@rdp_port})
-        LoginCommand.new('rdesktop', args)
+        args  = %W{-u #{options[:user]}}
+        args += %W{-p #{options[:pass]}} if options.key?(:pass)
+        args += %W{#{URI.parse(options[:endpoint]).host}:#{@rdp_port}}
+        LoginCommand.new("rdesktop", args)
       end
 
       # Builds a `LoginCommand` for use by Mac-based platforms.
@@ -168,7 +168,7 @@ module TrainPlugins
       # @return [LoginCommand] a login command
       # @api private
       def login_command_for_mac
-        LoginCommand.new('open', rdp_doc(mac: true))
+        LoginCommand.new("open", rdp_doc(mac: true))
       end
 
       # Builds a `LoginCommand` for use by Windows-based platforms.
@@ -176,7 +176,7 @@ module TrainPlugins
       # @return [LoginCommand] a login command
       # @api private
       def login_command_for_windows
-        LoginCommand.new('mstsc', rdp_doc)
+        LoginCommand.new("mstsc", rdp_doc)
       end
 
       # Establishes a remote shell session, or establishes one when invoked
@@ -205,7 +205,7 @@ module TrainPlugins
       # @api private
       def to_s
         options_to_print = @options.clone
-        options_to_print[:password] = '<hidden>' if options_to_print.key?(:password)
+        options_to_print[:password] = "<hidden>" if options_to_print.key?(:password)
         "#{@username}@#{@hostname}<#{options_to_print.inspect}>"
       end
     end
