@@ -13,6 +13,8 @@ task default: %i(lint test:unit test:functional)
 #------------------------------------------------------------------#
 require "rake/testtask"
 
+task :test => "test:unit"
+
 namespace :test do
   {
     unit: "test/unit/*_test.rb",
