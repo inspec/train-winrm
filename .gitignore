@@ -4,3 +4,4 @@ Gemfile.local.lock
 .github/labels-in-terraform/.terraform
 Gemfile.lock
 .bundle
+.vagrant
