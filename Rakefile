@@ -6,22 +6,22 @@
 #------------------------------------------------------------------#
 
 # Do not run integration by default
-task default: %i(test:unit test:functional)
+task default: %i{test:unit test:functional}
 
 #------------------------------------------------------------------#
 #                    Test Runner Tasks
 #------------------------------------------------------------------#
-require 'rake/testtask'
+require "rake/testtask"
 
 namespace :test do
   {
-    unit: 'test/unit/*_test.rb',
-    integration: 'test/integration/*_test.rb',
-    functional: 'test/functional/*_test.rb',
+    unit: "test/unit/*_test.rb",
+    integration: "test/integration/*_test.rb",
+    functional: "test/functional/*_test.rb",
   }.each do |task_name, glob|
     Rake::TestTask.new(task_name) do |t|
-      t.libs.push 'lib'
-      t.libs.push 'test'
+      t.libs.push "lib"
+      t.libs.push "test"
       t.test_files = FileList[glob]
       t.verbose = true
       t.warning = false
@@ -32,19 +32,9 @@ end
 # #------------------------------------------------------------------#
 # #                    Code Style Tasks
 # #------------------------------------------------------------------#
-require 'rubocop/rake_task'
+require "chefstyle"
+require "rubocop/rake_task"
 
-RuboCop::RakeTask.new(:lint) do |t|
-  # Choices of rubocop rules to enforce are deeply personal.
-  # Here, we set things up so that your plugin will use the Bundler-installed
-  # train gem's copy of the Train project's rubocop.yml file (which
-  # is indeed packaged with the train gem).
-  if File.exist?('../train/.rubocop.yml')
-    train_rubocop_yml = '../train/.rubocop.yml'
-  else
-    require 'train/globals'
-    train_rubocop_yml = File.join(Train.src_root, '.rubocop.yml')
-  end
-
-  t.options = ['--display-cop-names', '--config', train_rubocop_yml]
+RuboCop::RakeTask.new(:lint) do |task|
+  task.options << "--display-cop-names"
 end
