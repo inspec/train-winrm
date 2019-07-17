@@ -1,34 +1,38 @@
+# Documentation available at https://expeditor.chef.io/docs/getting-started/
 ---
-rubygems:
-  - train-winrm
+
+pipelines:
+ - verify:
+    description: Pull Request validation tests
+    public: true
 
 slack:
-  notify_channel: train-notify
+ notify_channel: inspec-notify
 
 github:
-  version_tag_format: "v{{version}}"
-  minor_bump_labels:
-    - "Expeditor/Bump Minor Version"
-  major_bump_labels:
-    - "Expeditor/Bump Major Version"
+ delete_branch_on_merge: true
+ minor_bump_labels:
+  - "Version: Bump Minor"
+ version_tag_format: v{{version}}
+ release_branch:
+  - master
+ 
+changelog:
+ categories:
+  - "Type: New Resource": "New Resources"
+  - "Type: New Feature": "New Features"
+  - "Type: Enhancement": "Enhancements"
+  - "Type: Bug": "Bug Fixes"
 
 merge_actions:
-  - built_in:bump_version:
-      ignore_labels:
-        - "Expeditor/Skip Version Bump"
-        - "Expeditor/Skip All"
-  - bash:.expeditor/update_version.sh:
-      only_if:
-        - built_in:bump_version
-  - built_in:update_changelog:
-      ignore_labels:
-        - "Expeditor/Skip Changelog"
-        - "Expeditor/Skip All"
-  - built_in:build_gem:
-      only_if:
-        - built_in:bump_version
+ - built_in:bump_version:
+    ignore_labels:
+     - "Version: Skip Bump"
+     - "Expeditor: Skip All"
+ - bash:.expeditor/update_version.sh:
+    only_if: built_in:bump_version
+ - built_in:update_changelog:
+    ignore_labels:
+     - "Changelog: Skip Update"
+     - "Expeditor: Skip All"
 
-promote:
-  actions:
-    - built_in:rollover_changelog
-    - built_in:publish_rubygems
