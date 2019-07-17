@@ -6,14 +6,14 @@
 #------------------------------------------------------------------#
 
 # Do not run integration by default
-task default: %i(lint test:unit test:functional)
+task default: %i{lint test:unit test:functional}
 
 #------------------------------------------------------------------#
 #                    Test Runner Tasks
 #------------------------------------------------------------------#
 require "rake/testtask"
 
-task :test => "test:unit"
+task test: "test:unit"
 
 namespace :test do
   {
@@ -33,26 +33,26 @@ namespace :test do
   task :start_vagrant do |_t|
     # The Vagrantfile relies on a vagrant box that is private to Chef
     # Consider https://app.vagrantup.com/peru/boxes/windows-server-2016-standard-x64-eval as alternative
-    sh 'vagrant up'
+    sh "vagrant up"
   end
 
   task :integration_actual do |_t|
     # TODO: Read vars from vagrant?
-    env = ''
-    env +='TRAIN_WINRM_TARGET=winrm://vagrant@127.0.0.1 '
-    env +='TRAIN_WINRM_PASSWORD=vagrant '
+    env = ""
+    env += "TRAIN_WINRM_TARGET=winrm://vagrant@127.0.0.1 "
+    env += "TRAIN_WINRM_PASSWORD=vagrant "
 
-    Dir.glob('test/integration/*_test.rb').all? do |file|
+    Dir.glob("test/integration/*_test.rb").all? do |file|
       sh "#{env} #{Gem.ruby} -I ./test/integration #{file}"
-    end or fail 'Failures'
+    end || raise("Failures")
   end
 
   task :stop_vagrant do |_t|
-    sh 'vagrant destroy --force'
+    sh "vagrant destroy --force"
   end
 
-  desc 'Integration tasks, Vagrant+VirtualBox-based'
-  task integration: %i(start_vagrant integration_actual stop_vagrant)
+  desc "Integration tasks, Vagrant+VirtualBox-based"
+  task integration: %i{start_vagrant integration_actual stop_vagrant}
 
 end
 

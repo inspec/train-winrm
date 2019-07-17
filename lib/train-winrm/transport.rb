@@ -184,7 +184,7 @@ module TrainPlugins
           " `gem 'winrm-fs', '#{spec_version}'`."
         )
         raise Train::UserError,
-              "Could not load or activate WinRM::FS (#{e.message})"
+          "Could not load or activate WinRM::FS (#{e.message})"
       end
 
       # Load WinRM::Transport code.

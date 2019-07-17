@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure('2') do |config|
-  config.vm.box = 'chef/windows-server-2016-standard'
+Vagrant.configure("2") do |config|
+  config.vm.box = "chef/windows-server-2016-standard"
 
-  config.vm.provider 'virtualbox' do |v|
+  config.vm.provider "virtualbox" do |v|
     v.memory = 4096
     v.cpus = 1
   end
@@ -20,7 +20,7 @@ Vagrant.configure('2') do |config|
   #  SHELL
 
   # Using separate provision block to make sure path is set
-  config.vm.provision 'shell', name: 'enable winrm', inline: <<-SHELL
+  config.vm.provision "shell", name: "enable winrm", inline: <<-SHELL
     winrm quickconfig -q
   SHELL
 end
