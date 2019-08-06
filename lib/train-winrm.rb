@@ -12,9 +12,9 @@ libdir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 # It's traditonal to keep your gem version in a separate file, so CI can find it easier.
-require 'train-winrm/version'
+require "train-winrm/version"
 
 # A train plugin has three components: Transport, Connection, and (optionally) Platform.
 # Transport acts as the glue.
-require 'train-winrm/transport'
-require 'train-winrm/connection'
+require "train-winrm/transport"
+require "train-winrm/connection"

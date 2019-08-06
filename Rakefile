@@ -9,25 +9,25 @@ require "rubocop/rake_task"
 #------------------------------------------------------------------#
 
 # Do not run integration by default
-task default: %i(test:unit test:functional)
+task default: %i{test:unit test:functional}
 
 #------------------------------------------------------------------#
 #                    Test Runner Tasks
 #------------------------------------------------------------------#
-require 'rake/testtask'
+require "rake/testtask"
 
 namespace :test do
-  desc 'Run ChefStyle Linting'
+  desc "Run ChefStyle Linting"
   RuboCop::RakeTask.new(:lint)
 
   {
-    unit: 'test/unit/*_test.rb',
-    integration: 'test/integration/*_test.rb',
-    functional: 'test/functional/*_test.rb',
+    unit: "test/unit/*_test.rb",
+    integration: "test/integration/*_test.rb",
+    functional: "test/functional/*_test.rb",
   }.each do |task_name, glob|
     Rake::TestTask.new(task_name) do |t|
-      t.libs.push 'lib'
-      t.libs.push 'test'
+      t.libs.push "lib"
+      t.libs.push "test"
       t.test_files = FileList[glob]
       t.verbose = true
       t.warning = false
