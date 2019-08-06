@@ -14,10 +14,10 @@ gemspec
 group :development do
   gem 'bundler'
   gem 'byebug'
+  gem 'chefstyle',  "0.13.2"
   gem 'm'
   gem 'minitest'
   gem 'mocha'
   gem 'pry'
   gem 'rake'
-  gem 'rubocop', '= 0.49.1' # Need to keep in sync with main InSpec project, so config files will work
 end
