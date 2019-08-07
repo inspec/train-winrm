@@ -13,16 +13,25 @@ github:
  delete_branch_on_merge: true
  minor_bump_labels:
   - "Version: Bump Minor"
+ major_bump_labels:
+  - "Version: Bump Major"
  version_tag_format: v{{version}}
  release_branch:
   - master
- 
+
 changelog:
  categories:
-  - "Type: New Resource": "New Resources"
   - "Type: New Feature": "New Features"
   - "Type: Enhancement": "Enhancements"
   - "Type: Bug": "Bug Fixes"
+
+rubygems:
+  - train-winrm
+
+promote:
+  actions:
+    - built_in:rollover_changelog
+    - built_in:publish_rubygems
 
 merge_actions:
  - built_in:bump_version:
