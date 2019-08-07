@@ -16,7 +16,7 @@ Train plugins may be developed without a Chef InSpec installation.
 
 ### ChefDK Installation
 
-After June 2019, this plugin will be distributed with ChefDK; you do not need to install it separately.
+After August 2019, this plugin will be distributed with ChefDK; you do not need to install it separately.
 
 ### Manual Installation using `inspec plugin install`
 
