@@ -5,6 +5,6 @@
 
 module TrainPlugins
   module WinRM
-    VERSION = "0.1.4".freeze
+    VERSION = "0.2.0".freeze
   end
 end
