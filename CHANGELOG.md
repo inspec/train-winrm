@@ -1,12 +1,15 @@
-<!-- latest_release 0.2.0 -->
-## [v0.2.0](https://github.com/inspec/train-winrm/tree/v0.2.0) (2019-08-07)
+<!-- latest_release 0.2.1 -->
+## [v0.2.1](https://github.com/inspec/train-winrm/tree/v0.2.1) (2019-08-07)
 
-#### Merged Pull Requests
-- Update pin on train to v3 [#9](https://github.com/inspec/train-winrm/pull/9) ([clintoncwolfe](https://github.com/clintoncwolfe))
+#### Enhancements
+- Update expeditor config to publish rubygems on promote [#11](https://github.com/inspec/train-winrm/pull/11) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.1.0 -->
 ### Changes since 0.1.0 release
+
+#### Enhancements
+- Update expeditor config to publish rubygems on promote [#11](https://github.com/inspec/train-winrm/pull/11) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.1 -->
 
 #### Merged Pull Requests
 - Update pin on train to v3 [#9](https://github.com/inspec/train-winrm/pull/9) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.0 -->
