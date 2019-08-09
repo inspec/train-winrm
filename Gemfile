@@ -12,6 +12,9 @@ gemspec
 
 # Remaining group is only used for development.
 group :development do
+  # Depend on this here, not in the gemspec - to avoid having to have
+  # client applications induce circular dependencies
+  gem "train-core", "~> 3.0"
   gem "bundler"
   gem "byebug"
   gem "m"
