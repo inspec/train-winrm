@@ -1,8 +1,8 @@
-<!-- latest_release 0.2.1 -->
-## [v0.2.1](https://github.com/inspec/train-winrm/tree/v0.2.1) (2019-08-07)
+<!-- latest_release 0.2.2 -->
+## [v0.2.2](https://github.com/inspec/train-winrm/tree/v0.2.2) (2019-08-09)
 
-#### Enhancements
-- Update expeditor config to publish rubygems on promote [#11](https://github.com/inspec/train-winrm/pull/11) ([clintoncwolfe](https://github.com/clintoncwolfe))
+#### Merged Pull Requests
+- Depend on train-core via the Gemfile, not train [#12](https://github.com/inspec/train-winrm/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.1.0 -->
@@ -12,6 +12,7 @@
 - Update expeditor config to publish rubygems on promote [#11](https://github.com/inspec/train-winrm/pull/11) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.1 -->
 
 #### Merged Pull Requests
+- Depend on train-core via the Gemfile, not train [#12](https://github.com/inspec/train-winrm/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.2 -->
 - Update pin on train to v3 [#9](https://github.com/inspec/train-winrm/pull/9) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.0 -->
 - Fix PR 2 [#7](https://github.com/inspec/train-winrm/pull/7) ([zenspider](https://github.com/zenspider)) <!-- 0.1.4 -->
 - Apply Chefstyle to train-winrm [#5](https://github.com/inspec/train-winrm/pull/5) ([miah](https://github.com/miah)) <!-- 0.1.3 -->
