@@ -26,12 +26,12 @@ changelog:
   - "Type: Bug": "Bug Fixes"
 
 rubygems:
-  - train-winrm
+ - train-winrm
 
 promote:
-  actions:
-    - built_in:rollover_changelog
-    - built_in:publish_rubygems
+ actions:
+  - built_in:rollover_changelog
+  - built_in:publish_rubygems
 
 merge_actions:
  - built_in:bump_version:
@@ -44,4 +44,6 @@ merge_actions:
     ignore_labels:
      - "Changelog: Skip Update"
      - "Expeditor: Skip All"
-
+ - built_in:build_gem:
+    only_if:
+     - built_in:bump_version
