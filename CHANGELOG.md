@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.4 -->
+## [v0.2.4](https://github.com/inspec/train-winrm/tree/v0.2.4) (2019-09-04)
+
+#### Merged Pull Requests
+- Limit the files we ship in the gem but include the LICENSE file [#14](https://github.com/inspec/train-winrm/pull/14) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.3 -->
+### Changes since 0.2.3 release
+
+#### Merged Pull Requests
+- Limit the files we ship in the gem but include the LICENSE file [#14](https://github.com/inspec/train-winrm/pull/14) ([tas50](https://github.com/tas50)) <!-- 0.2.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
@@ -18,4 +26,3 @@
 - Update pin on train to v3 [#9](https://github.com/inspec/train-winrm/pull/9) ([clintoncwolfe](https://github.com/clintoncwolfe))
 - Depend on train-core via the Gemfile, not train [#12](https://github.com/inspec/train-winrm/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_stable_release -->
-
