@@ -24,12 +24,8 @@ Gem::Specification.new do |spec|
   # Though complicated-looking, this is pretty standard for a gemspec.
   # It just filters what will actually be packaged in the gem (leaving
   # out tests, etc)
-  spec.files = %w{
-    README.md train-winrm.gemspec Gemfile
-  } + Dir.glob(
-    "lib/**/*", File::FNM_DOTMATCH
-  ).reject { |f| File.directory?(f) }
   spec.require_paths = ["lib"]
+  spec.files = %w{LICENSE} + Dir.glob("lib/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
 
   # If you rely on any other gems, list them here with any constraints.
   # This is how `inspec plugin install` is able to manage your dependencies.
