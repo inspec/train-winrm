@@ -1,5 +1,8 @@
 # train-winrm - Train Plugin for connecting to Windows via Remote Management
 
+[![Gem Version](https://badge.fury.io/rb/train-winrm.svg)](https://badge.fury.io/rb/train-winrm)
+[![Build status](https://badge.buildkite.com/f293066ffe281ec41dc14fe941a2bafbdfa8110c0cd4024c88.svg?branch=master)](https://buildkite.com/chef-oss/inspec-train-winrm-master-verify)
+
 * **Project State: Active**
 * **Issues Response SLA: 3 business days**
 * **Pull Request Response SLA: 3 business days**
