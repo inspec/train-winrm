@@ -148,7 +148,7 @@ module TrainPlugins
         @file_manager ||= begin
           # Ensure @service is available:
           wait_until_ready
-          WinRM::FS::FileManager.new(@service)
+          ::WinRM::FS::FileManager.new(@service)
         end
       end
 
