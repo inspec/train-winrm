@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.5 -->
+## [v0.2.5](https://github.com/inspec/train-winrm/tree/v0.2.5) (2019-09-25)
+
+#### Bug Fixes
+- Fixes for NameError: uninitialized constant TrainPlugins::WinRM::FS [#18](https://github.com/inspec/train-winrm/pull/18) ([vsingh-msys](https://github.com/vsingh-msys))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.4 -->
+### Changes since 0.2.4 release
+
+#### Bug Fixes
+- Fixes for NameError: uninitialized constant TrainPlugins::WinRM::FS [#18](https://github.com/inspec/train-winrm/pull/18) ([vsingh-msys](https://github.com/vsingh-msys)) <!-- 0.2.5 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
