@@ -189,10 +189,10 @@ module TrainPlugins
       # @api private
       def session(retry_options = {})
         @session ||= begin
-          opts = {
+          opts = retry_options.merge({
             retry_limit: @connection_retries.to_i,
             retry_delay: @connection_retry_sleep.to_i,
-          }.merge(retry_options)
+          })
 
           opts[:operation_timeout] = @operation_timeout unless @operation_timeout.nil?
           @service = ::WinRM::Connection.new(options.merge(opts))
