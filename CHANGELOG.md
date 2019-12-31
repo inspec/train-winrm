@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.6 -->
+## [v0.2.6](https://github.com/inspec/train-winrm/tree/v0.2.6) (2019-12-31)
+
+#### Merged Pull Requests
+- Substitute require for require_relative [#21](https://github.com/inspec/train-winrm/pull/21) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.5 -->
+### Changes since 0.2.5 release
+
+#### Merged Pull Requests
+- Substitute require for require_relative [#21](https://github.com/inspec/train-winrm/pull/21) ([tas50](https://github.com/tas50)) <!-- 0.2.6 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
