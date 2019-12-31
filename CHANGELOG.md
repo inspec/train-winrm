@@ -1,23 +1,20 @@
-<!-- latest_release 0.2.6 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v0.2.6](https://github.com/inspec/train-winrm/tree/v0.2.6) (2019-12-31)
 
 #### Merged Pull Requests
 - Substitute require for require_relative [#21](https://github.com/inspec/train-winrm/pull/21) ([tas50](https://github.com/tas50))
-<!-- latest_release -->
-
-<!-- release_rollup since=0.2.5 -->
-### Changes since 0.2.5 release
-
-#### Merged Pull Requests
-- Substitute require for require_relative [#21](https://github.com/inspec/train-winrm/pull/21) ([tas50](https://github.com/tas50)) <!-- 0.2.6 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v0.2.5](https://github.com/inspec/train-winrm/tree/v0.2.5) (2019-09-25)
 
 #### Bug Fixes
 - Fixes for NameError: uninitialized constant TrainPlugins::WinRM::FS [#18](https://github.com/inspec/train-winrm/pull/18) ([vsingh-msys](https://github.com/vsingh-msys))
-<!-- latest_stable_release -->
 
 ## [v0.2.4](https://github.com/inspec/train-winrm/tree/v0.2.4) (2019-09-04)
 
