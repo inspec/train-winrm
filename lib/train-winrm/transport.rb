@@ -46,7 +46,7 @@ module TrainPlugins
     class Transport < Train.plugin(1) # rubocop:disable Metrics/ClassLength
       name "winrm"
 
-      require "train-winrm/connection"
+      require_relative "connection"
 
       # ref: https://github.com/winrb/winrm#transports
       SUPPORTED_WINRM_TRANSPORTS = %i{negotiate ssl plaintext kerberos}.freeze
