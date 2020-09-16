@@ -42,9 +42,12 @@ namespace :test do
     env += "TRAIN_WINRM_TARGET=winrm://vagrant@127.0.0.1 "
     env += "TRAIN_WINRM_PASSWORD=vagrant "
 
-    Dir.glob("test/integration/*_test.rb").all? do |file|
-      sh "#{env} #{Gem.ruby} -I ./test/integration #{file}"
-    end || raise("Failures")
+    %w{powershell elevated}.each do |shell_type|
+      env += "TRAIN_WINRM_SHELL_TYPE=#{shell_type} "
+      Dir.glob("test/integration/*_test.rb").all? do |file|
+        sh "#{env} #{Gem.ruby} -I ./test/integration #{file}"
+      end || raise("Failures")
+    end
   end
 
   task :stop_vagrant do |_t|

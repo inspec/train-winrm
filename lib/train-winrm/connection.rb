@@ -47,6 +47,7 @@ module TrainPlugins
         @connection_retry_sleep = @options.delete(:connection_retry_sleep)
         @max_wait_until_ready   = @options.delete(:max_wait_until_ready)
         @operation_timeout      = @options.delete(:operation_timeout)
+        @shell_type             = @options.delete(:winrm_shell_type)
       end
 
       # (see Base::Connection#close)
@@ -195,7 +196,7 @@ module TrainPlugins
           opts[:operation_timeout] = @operation_timeout unless @operation_timeout.nil?
           @service = ::WinRM::Connection.new(options.merge(opts))
           @service.logger = logger
-          @service.shell(:powershell)
+          @service.shell(@shell_type)
         end
       end
 

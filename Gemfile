@@ -21,4 +21,5 @@ group :development do
   gem "pry"
   gem "rake"
   gem "chefstyle"
+  gem "winrm-elevated"
 end

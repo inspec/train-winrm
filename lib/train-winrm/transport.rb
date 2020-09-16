@@ -19,8 +19,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "rbconfig"
-require "uri"
 require "train"
 require "train/errors"
 require "train/plugins"
@@ -74,6 +72,7 @@ module TrainPlugins
       # from the winrm endpoint. Does not mean that the command has
       # completed in this time, only that the server has ack'd the request.
       option :operation_timeout, default: nil
+      option :winrm_shell_type , default: "powershell"
 
       def initialize(opts)
         super(opts)
@@ -114,6 +113,7 @@ module TrainPlugins
       end
 
       WINRM_FS_SPEC_VERSION = "~> 1.0".freeze
+      WINRM_ELEVATED_SPEC_VERSION = "~> 1.2.2".freeze
 
       # Builds the hash of options needed by the Connection object on
       # construction.
@@ -140,6 +140,7 @@ module TrainPlugins
           service: opts[:kerberos_service],
           ca_trust_file: opts[:ca_trust_file],
           ssl_peer_fingerprint: opts[:ssl_peer_fingerprint],
+          winrm_shell_type: opts[:winrm_shell_type],
         }
       end
 
@@ -164,32 +165,41 @@ module TrainPlugins
         spec_version = WINRM_FS_SPEC_VERSION.dup
         logger.debug("winrm-fs requested," \
           " loading WinRM::FS gem (#{spec_version})")
-        gem "winrm-fs", spec_version
-        first_load = require "winrm-fs"
-        load_winrm_transport!
+        load_dependency("winrm-fs", spec_version)
+
+        spec_version = WINRM_ELEVATED_SPEC_VERSION.dup
+        logger.debug("winrm-elevated requested," \
+          " loading WinRM-elevated gem (#{spec_version})")
+        load_dependency("winrm-elevated", spec_version)
+      end
+
+      def load_dependency(gem_name, spec_version)
+        gem gem_name, spec_version
+        first_load = require gem_name
+        load_winrm_transport!(gem_name)
 
         if first_load
-          logger.debug("WinRM::FS library loaded")
+          logger.debug("#{gem_name} library loaded")
         else
-          logger.debug("WinRM::FS previously loaded")
+          logger.debug("#{gem_name} previously loaded")
         end
       rescue LoadError => e
         logger.fatal(
-          "The `winrm-fs' gem is missing and must" \
+          "The `#{gem_name}' gem is missing and must" \
           " be installed or cannot be properly activated. Run" \
-          " `gem install winrm-fs --version '#{spec_version}'`" \
+          " `gem install #{gem_name}  --version '#{spec_version}'`" \
           " or add the following to your Gemfile if you are using Bundler:" \
-          " `gem 'winrm-fs', '#{spec_version}'`."
+          " `gem '#{gem_name}', '#{spec_version}'`."
         )
         raise Train::UserError,
-          "Could not load or activate WinRM::FS (#{e.message})"
+          "Could not load or activate #{gem_name} (#{e.message})"
       end
 
       # Load WinRM::Transport code.
       #
       # @api private
-      def load_winrm_transport!
-        silence_warnings { require "winrm-fs" }
+      def load_winrm_transport!(gem_name)
+        silence_warnings { require gem_name }
       end
 
       # Return the last saved WinRM connection instance.
