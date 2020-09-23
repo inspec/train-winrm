@@ -33,6 +33,8 @@
 
 require "train"
 require "train/plugins"
+# This module may need to directly require WinRM to reference its exception classes
+require "winrm" unless defined?(WinRM)
 
 module TrainPlugins
   module WinRM
@@ -108,15 +110,47 @@ module TrainPlugins
         Train::File::Remote::Windows.new(self, path)
       end
 
-      def run_command_via_connection(command, &data_handler)
+      def run_command_via_connection(command, opts = {}, &data_handler)
         return if command.nil?
 
         logger.debug("[WinRM] #{self} (#{command})")
         out = ""
+        response = nil
+        timeout = opts[:timeout]&.to_i
 
-        response = session.run(command) do |stdout, _|
-          yield(stdout) if data_handler && stdout
-          out << stdout if stdout
+        # Run the command in a thread, to support timing out the command
+        thr = Thread.new do
+          # Surface any exceptions in this thread back to this method
+          Thread.current.report_on_exception = false
+          Thread.current.abort_on_exception = true
+          begin
+            response = session.run(command) do |stdout, _|
+              yield(stdout) if data_handler && stdout
+              out << stdout if stdout
+            end
+          rescue ::WinRM::WinRMHTTPTransportError => e
+            # If this command hits timeout, there is also a potential race in the HTTP transport
+            # where decryption is attempted on an empty message.
+            raise e unless timeout && e.to_s == "Could not decrypt NTLM message. ()."
+          rescue RuntimeError => e
+            # Ref: https://github.com/WinRb/WinRM/issues/315
+            # If this command hits timeout, calling close with the command currently running causes
+            # a RuntimeError error in WinRM's cleanup code. This specific error can be ignored.
+            # The command will be terminated and further commands can be sent on the connection.
+            raise e unless timeout && e.to_s == "opts[:shell_id] is required"
+          end
+        end
+
+        if timeout
+          res = thr.join(timeout)
+          unless res
+            msg = "PowerShell command '(#{command})' reached timeout (#{timeout}s)"
+            logger.info("[WinRM] #{msg}")
+            close
+            raise Train::CommandTimeoutReached.new msg
+          end
+        else
+          thr.join
         end
 
         CommandResult.new(out, response.stderr, response.exitcode)
