@@ -18,7 +18,8 @@ describe "windows winrm command" do
       password: ENV["TRAIN_WINRM_PASSWORD"],
       ssl: ENV["TRAIN_WINRM_SSL"],
       self_signed: true,
-      logger: logger
+      logger: logger,
+      winrm_shell_type: ENV["TRAIN_WINRM_SHELL_TYPE"] || "powershell"
     )
 
     # initialize train

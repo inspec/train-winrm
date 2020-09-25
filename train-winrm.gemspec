@@ -4,7 +4,7 @@
 
 # It is traditional in a gemspec to dynamically load the current version
 # from a file in the source tree.  The next three lines make that happen.
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path("../lib", __FILE__) # rubocop:disable Style/ExpandPathArguments
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "train-winrm/version"
 
@@ -36,5 +36,6 @@ Gem::Specification.new do |spec|
   # Do not list inspec as a dependency of a train plugin.
   # Do not list train or train-core as a dependency of a train plugin.
   spec.add_dependency "winrm", "~> 2.0"
+  spec.add_dependency "winrm-elevated", "~> 1.2.2"
   spec.add_dependency "winrm-fs", "~> 1.0"
 end
