@@ -46,6 +46,7 @@ module TrainPlugins
 
       # ref: https://github.com/winrb/winrm#transports
       SUPPORTED_WINRM_TRANSPORTS = %i{negotiate ssl plaintext kerberos}.freeze
+      SUPPORTED_WINRM_SHELL_TYPES = %i{powershell elevated cmd}.freeze
 
       # common target configuration
       option :host, required: true
@@ -104,6 +105,11 @@ module TrainPlugins
         winrm_transport = opts[:winrm_transport].to_sym
         unless SUPPORTED_WINRM_TRANSPORTS.include?(winrm_transport)
           raise Train::ClientError, "Unsupported transport type: #{winrm_transport.inspect}"
+        end
+
+        winrm_shell_type = opts[:winrm_shell_type].to_sym
+        unless SUPPORTED_WINRM_SHELL_TYPES.include?(winrm_shell_type)
+          raise Train::ClientError, "Unsupported winrm shell type: #{winrm_shell_type.inspect}"
         end
 
         # remove leading '/'
