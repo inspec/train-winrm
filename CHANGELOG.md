@@ -1,14 +1,15 @@
-<!-- latest_release 0.2.7 -->
-## [v0.2.7](https://github.com/inspec/train-winrm/tree/v0.2.7) (2020-08-17)
+<!-- latest_release 0.2.8 -->
+## [v0.2.8](https://github.com/inspec/train-winrm/tree/v0.2.8) (2020-09-25)
 
 #### Merged Pull Requests
-- Remove redundant encoding comments [#22](https://github.com/inspec/train-winrm/pull/22) ([tas50](https://github.com/tas50))
+- Add winrm-shell-type option and winrm elevated shell [#25](https://github.com/inspec/train-winrm/pull/25) ([catriona1](https://github.com/catriona1))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.2.6 -->
 ### Changes since 0.2.6 release
 
 #### Merged Pull Requests
+- Add winrm-shell-type option and winrm elevated shell [#25](https://github.com/inspec/train-winrm/pull/25) ([catriona1](https://github.com/catriona1)) <!-- 0.2.8 -->
 - Remove redundant encoding comments [#22](https://github.com/inspec/train-winrm/pull/22) ([tas50](https://github.com/tas50)) <!-- 0.2.7 -->
 <!-- release_rollup -->
 
