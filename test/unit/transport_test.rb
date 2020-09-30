@@ -71,12 +71,12 @@ describe "winrm transport" do
   describe "winrm options" do
     let(:winrm) { cls.new(conf) }
     let(:connection) { winrm.connection }
-    it "without ssl genrates uri" do
+    it "without ssl generates uri" do
       conf[:host] = "dummy_host"
       _(connection.uri).must_equal "winrm://administrator@http://dummy_host:5985/wsman:3389"
     end
 
-    it "without ssl genrates uri" do
+    it "without ssl generates uri" do
       conf[:ssl] = true
       conf[:host] = "dummy_host_ssl"
       _(connection.uri).must_equal "winrm://administrator@https://dummy_host_ssl:5986/wsman:3389"
@@ -85,7 +85,7 @@ describe "winrm transport" do
 
   describe "options validation" do
     let(:winrm) { cls.new(conf) }
-    it "raises an error when a non-supported winrm_transport is specificed" do
+    it "raises an error when a non-supported winrm_transport is specified" do
       conf[:winrm_transport] = "invalid"
       _(proc { winrm.connection }).must_raise Train::ClientError
     end

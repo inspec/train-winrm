@@ -153,7 +153,7 @@ module TrainPlugins
       # Creates a new WinRM Connection instance and save it for potential
       # future reuse.
       #
-      # @param options [Hash] conneciton options
+      # @param options [Hash] connection options
       # @return [WinRM::Connection] a WinRM Connection instance
       # @api private
       def create_new_connection(options, &block)
