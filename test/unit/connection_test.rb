@@ -37,9 +37,9 @@ describe "winrm connection" do
       # We need to test run_command b/c run_command_via_connection is private.
       winrm.run_command("test") do |data|
         called = true
-        data.must_equal "testdata"
+        _(data).must_equal "testdata"
       end
-      called.must_equal true
+      _(called).must_equal true
     end
   end
 
