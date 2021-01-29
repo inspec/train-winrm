@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
 
   # Do not list inspec as a dependency of a train plugin.
   # Do not list train or train-core as a dependency of a train plugin.
-  spec.add_dependency "winrm", "~> 2.0"
+  spec.add_dependency "winrm", ">= 2.3.6", "< 3.0"
   spec.add_dependency "winrm-elevated", "~> 1.2.2"
   spec.add_dependency "winrm-fs", "~> 1.0"
 end
