@@ -1,18 +1,16 @@
-<!-- latest_release 0.2.12 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v0.2.12](https://github.com/inspec/train-winrm/tree/v0.2.12) (2021-01-29)
 
 #### Merged Pull Requests
 - Use latest winrm for ruby 3 support [#29](https://github.com/inspec/train-winrm/pull/29) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_release -->
-
-<!-- release_rollup since=0.2.11 -->
-### Changes since 0.2.11 release
-
-#### Merged Pull Requests
-- Use latest winrm for ruby 3 support [#29](https://github.com/inspec/train-winrm/pull/29) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.12 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v0.2.11](https://github.com/inspec/train-winrm/tree/v0.2.11) (2020-09-30)
 
 #### Merged Pull Requests
@@ -21,7 +19,6 @@
 - Add validation to winrm shell type option [#28](https://github.com/inspec/train-winrm/pull/28) ([catriona1](https://github.com/catriona1))
 - Allow timeout option for WinRM commands [#27](https://github.com/inspec/train-winrm/pull/27) ([james-stocks](https://github.com/james-stocks))
 - Correct minor spelling mistakes [#23](https://github.com/inspec/train-winrm/pull/23) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v0.2.6](https://github.com/inspec/train-winrm/tree/v0.2.6) (2019-12-31)
 
