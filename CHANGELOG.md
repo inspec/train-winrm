@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.12 -->
+## [v0.2.12](https://github.com/inspec/train-winrm/tree/v0.2.12) (2021-01-29)
+
+#### Merged Pull Requests
+- Use latest winrm for ruby 3 support [#29](https://github.com/inspec/train-winrm/pull/29) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.11 -->
+### Changes since 0.2.11 release
+
+#### Merged Pull Requests
+- Use latest winrm for ruby 3 support [#29](https://github.com/inspec/train-winrm/pull/29) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.12 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
