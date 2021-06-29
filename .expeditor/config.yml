@@ -16,7 +16,7 @@ github:
  major_bump_labels:
   - "Version: Bump Major"
  version_tag_format: v{{version}}
- 
+
 release_branches:
   - master
 
@@ -34,8 +34,6 @@ subscriptions:
     actions:
      - built_in:rollover_changelog
      - built_in:publish_rubygems
-
-subscriptions:
   - workload: pull_request_merged:{{github_repo}}:{{release_branch}}:*
     actions:
       - built_in:bump_version:
