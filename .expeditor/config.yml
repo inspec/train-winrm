@@ -16,7 +16,8 @@ github:
  major_bump_labels:
   - "Version: Bump Major"
  version_tag_format: v{{version}}
- release_branch:
+ 
+release_branches:
   - master
 
 changelog:
@@ -28,22 +29,25 @@ changelog:
 rubygems:
  - train-winrm
 
-promote:
- actions:
-  - built_in:rollover_changelog
-  - built_in:publish_rubygems
+subscriptions:
+  - workload: project_promoted:{{agent_id}}:*
+    actions:
+     - built_in:rollover_changelog
+     - built_in:publish_rubygems
 
-merge_actions:
- - built_in:bump_version:
-    ignore_labels:
-     - "Version: Skip Bump"
-     - "Expeditor: Skip All"
- - bash:.expeditor/update_version.sh:
-    only_if: built_in:bump_version
- - built_in:update_changelog:
-    ignore_labels:
-     - "Changelog: Skip Update"
-     - "Expeditor: Skip All"
- - built_in:build_gem:
-    only_if:
-     - built_in:bump_version
+subscriptions:
+  - workload: pull_request_merged:{{github_repo}}:{{release_branch}}:*
+    actions:
+      - built_in:bump_version:
+         ignore_labels:
+          - "Version: Skip Bump"
+          - "Expeditor: Skip All"
+      - bash:.expeditor/update_version.sh:
+         only_if: built_in:bump_version
+      - built_in:update_changelog:
+         ignore_labels:
+          - "Changelog: Skip Update"
+          - "Expeditor: Skip All"
+      - built_in:build_gem:
+         only_if:
+          - built_in:bump_version
