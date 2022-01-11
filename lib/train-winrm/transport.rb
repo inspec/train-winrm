@@ -74,6 +74,8 @@ module TrainPlugins
       # completed in this time, only that the server has ack'd the request.
       option :operation_timeout, default: nil
       option :winrm_shell_type , default: "powershell"
+      option :client_cert , default: nil
+      option :client_key , default: nil
 
       def initialize(opts)
         super(opts)
@@ -147,6 +149,8 @@ module TrainPlugins
           ca_trust_file: opts[:ca_trust_file],
           ssl_peer_fingerprint: opts[:ssl_peer_fingerprint],
           winrm_shell_type: opts[:winrm_shell_type],
+          client_cert: opts[:client_cert],
+          client_key: opts[:client_key],
         }
       end
 
