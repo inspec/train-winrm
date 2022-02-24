@@ -76,6 +76,7 @@ module TrainPlugins
       option :winrm_shell_type , default: "powershell"
       option :client_cert , default: nil
       option :client_key , default: nil
+      option :client_key_pass , default: nil
 
       def initialize(opts)
         super(opts)
@@ -151,6 +152,7 @@ module TrainPlugins
           winrm_shell_type: opts[:winrm_shell_type],
           client_cert: opts[:client_cert],
           client_key: opts[:client_key],
+          key_pass: opts[:client_key_pass],
         }
       end
 
