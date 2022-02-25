@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.13 -->
+## [v0.2.13](https://github.com/inspec/train-winrm/tree/v0.2.13) (2022-02-25)
+
+#### Merged Pull Requests
+- CFINSPEC-2 Added options to allow SSL connection with certificates [#34](https://github.com/inspec/train-winrm/pull/34) ([Nik08](https://github.com/Nik08))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.12 -->
+### Changes since 0.2.12 release
+
+#### Merged Pull Requests
+- CFINSPEC-2 Added options to allow SSL connection with certificates [#34](https://github.com/inspec/train-winrm/pull/34) ([Nik08](https://github.com/Nik08)) <!-- 0.2.13 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
