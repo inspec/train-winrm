@@ -1,14 +1,15 @@
-<!-- latest_release 0.2.14 -->
-## [v0.2.14](https://github.com/inspec/train-winrm/tree/v0.2.14) (2024-01-03)
+<!-- latest_release 0.2.15 -->
+## [v0.2.15](https://github.com/inspec/train-winrm/tree/v0.2.15) (2024-01-03)
 
 #### Merged Pull Requests
-- Fix the verify pipeline failng with cannot load such file -- mocha/setup (LoadError) [#37](https://github.com/inspec/train-winrm/pull/37) ([Vasu1105](https://github.com/Vasu1105))
+- Remove ruby 2.5 and 2.6 test  [#38](https://github.com/inspec/train-winrm/pull/38) ([Vasu1105](https://github.com/Vasu1105))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.2.13 -->
 ### Changes since 0.2.13 release
 
 #### Merged Pull Requests
+- Remove ruby 2.5 and 2.6 test  [#38](https://github.com/inspec/train-winrm/pull/38) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.15 -->
 - Fix the verify pipeline failng with cannot load such file -- mocha/setup (LoadError) [#37](https://github.com/inspec/train-winrm/pull/37) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.14 -->
 <!-- release_rollup -->
 
