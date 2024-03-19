@@ -17,7 +17,7 @@ end
 group :development do
   # Depend on this here, not in the gemspec - to avoid having to have
   # client applications induce circular dependencies
-  gem "train-core", "~> 3.0"
+  gem "train-core", git: "https://github.com/inspec/train.git", branch: "bs/fix-CHEF-8031"
   gem "bundler"
   gem "byebug"
   gem "m"
