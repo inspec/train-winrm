@@ -9,7 +9,7 @@
 
 This plugin allows applications that rely on Train to communicate with the WinRM API.  For example, you could use this to audit Windows Server 2016 machines.
 
-This plugin relies on the `winrm` and `winrm-fs` gems for implementation.
+This plugin relies on the `chef-winrm` and `chef-winrm-fs` gems for implementation.
 
 Train itself has no CLI, nor a sophisticated test harness.  Chef InSpec does have such facilities, so installing Train plugins will require a Chef InSpec installation.  You do not need to use or understand Chef InSpec.
 

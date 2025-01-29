@@ -177,7 +177,7 @@ module TrainPlugins
         spec_version = WINRM_FS_SPEC_VERSION.dup
         logger.debug("chef-winrm-fs requested," \
           " loading Chef::WinRM::FS gem (#{spec_version})")
-        load_dependency("winrm-fs", spec_version)
+        load_dependency("chef-winrm-fs", spec_version)
 
         spec_version = WINRM_ELEVATED_SPEC_VERSION.dup
         logger.debug("chef-winrm-elevated requested," \
