@@ -26,6 +26,10 @@ if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
   fi
 fi
 
+echo "--- Updating Ruby Gems"
+gem install rubygems-update
+update_rubygems
+
 echo "--- bundle install"
 bundle config set --local without tools maintenance deploy
 bundle install --jobs=7 --retry=3
