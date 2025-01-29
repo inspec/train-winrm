@@ -174,7 +174,6 @@ module TrainPlugins
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
-        binding.pry
         spec_version = WINRM_FS_SPEC_VERSION.dup
         logger.debug("chef-winrm-fs requested," \
           " loading Chef::WinRM::FS gem (#{spec_version})")
