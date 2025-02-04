@@ -4,7 +4,7 @@ require_relative "./helper"
 
 require "train-winrm/transport"
 require "train-winrm/connection"
-require "winrm/output"
+require "chef-winrm/output"
 
 describe "winrm connection" do
   let(:cls) do

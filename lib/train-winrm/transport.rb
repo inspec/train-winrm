@@ -22,6 +22,7 @@
 require "train"
 require "train/errors"
 require "train/plugins"
+require "chef-winrm-fs"
 
 # Train Plugins v1 are usually declared under the TrainPlugins namespace.
 # Each plugin has three components: Transport, Connection, and (optionally) Platform.
@@ -182,7 +183,7 @@ module TrainPlugins
         spec_version = WINRM_ELEVATED_SPEC_VERSION.dup
         logger.debug("chef-winrm-elevated requested," \
           " loading Chef-WinRM-elevated gem (#{spec_version})")
-        load_dependency("winrm-elevated", spec_version)
+        load_dependency("chef-winrm-elevated", spec_version)
       end
 
       def load_dependency(gem_name, spec_version)
