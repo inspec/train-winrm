@@ -122,8 +122,8 @@ module TrainPlugins
         opts[:endpoint] = "#{scheme}://#{opts[:host]}:#{port}/#{path}"
       end
 
-      WINRM_FS_SPEC_VERSION = ">= 1.3.6".freeze
-      WINRM_ELEVATED_SPEC_VERSION = ">= 1.2.4".freeze
+      WINRM_FS_SPEC_VERSION = ">= 1.3.7".freeze
+      WINRM_ELEVATED_SPEC_VERSION = ">= 1.2.5".freeze
 
       # Builds the hash of options needed by the Connection object on
       # construction.
