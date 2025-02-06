@@ -1,14 +1,15 @@
-<!-- latest_release 0.2.16 -->
-## [v0.2.16](https://github.com/inspec/train-winrm/tree/v0.2.16) (2024-01-08)
+<!-- latest_release 0.2.17 -->
+## [v0.2.17](https://github.com/inspec/train-winrm/tree/v0.2.17) (2025-02-06)
 
 #### Merged Pull Requests
-- CHEF-7501: Configures sonarqube for code coverage analysis [#36](https://github.com/inspec/train-winrm/pull/36) ([Vasu1105](https://github.com/Vasu1105))
+- Updating for rexml cve inclusion [#39](https://github.com/inspec/train-winrm/pull/39) ([johnmccrae](https://github.com/johnmccrae))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.2.13 -->
 ### Changes since 0.2.13 release
 
 #### Merged Pull Requests
+- Updating for rexml cve inclusion [#39](https://github.com/inspec/train-winrm/pull/39) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.2.17 -->
 - CHEF-7501: Configures sonarqube for code coverage analysis [#36](https://github.com/inspec/train-winrm/pull/36) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.16 -->
 - Remove ruby 2.5 and 2.6 test  [#38](https://github.com/inspec/train-winrm/pull/38) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.15 -->
 - Fix the verify pipeline failng with cannot load such file -- mocha/setup (LoadError) [#37](https://github.com/inspec/train-winrm/pull/37) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.14 -->
