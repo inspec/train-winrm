@@ -8,11 +8,6 @@ source "https://rubygems.org"
 # Bundler should refer to the gemspec for any dependencies.
 gemspec
 
-if Gem.ruby_version.to_s.start_with?("2.5")
-  # 16.7.23 required ruby 2.6+
-  gem "chef-utils", "< 16.7.23" # TODO: remove when we drop ruby 2.5
-end
-
 # Remaining group is only used for development.
 group :development do
   # Depend on this here, not in the gemspec - to avoid having to have
@@ -26,5 +21,5 @@ group :development do
   gem "pry"
   gem "rake"
   gem "chefstyle"
-  gem "winrm-elevated"
+  gem "chef-winrm-elevated"
 end

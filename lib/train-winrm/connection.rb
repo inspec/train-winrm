@@ -34,7 +34,7 @@
 require "train"
 require "train/plugins"
 # This module may need to directly require WinRM to reference its exception classes
-require "winrm" unless defined?(WinRM)
+require "chef-winrm" unless defined?(WinRM)
 
 module TrainPlugins
   module WinRM

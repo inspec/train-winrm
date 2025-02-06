@@ -22,6 +22,7 @@
 require "train"
 require "train/errors"
 require "train/plugins"
+require "chef-winrm-fs"
 
 # Train Plugins v1 are usually declared under the TrainPlugins namespace.
 # Each plugin has three components: Transport, Connection, and (optionally) Platform.
@@ -121,8 +122,8 @@ module TrainPlugins
         opts[:endpoint] = "#{scheme}://#{opts[:host]}:#{port}/#{path}"
       end
 
-      WINRM_FS_SPEC_VERSION = "~> 1.0".freeze
-      WINRM_ELEVATED_SPEC_VERSION = "~> 1.2.2".freeze
+      WINRM_FS_SPEC_VERSION = ">= 1.3.7".freeze
+      WINRM_ELEVATED_SPEC_VERSION = ">= 1.2.5".freeze
 
       # Builds the hash of options needed by the Connection object on
       # construction.
@@ -175,14 +176,14 @@ module TrainPlugins
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         spec_version = WINRM_FS_SPEC_VERSION.dup
-        logger.debug("winrm-fs requested," \
-          " loading WinRM::FS gem (#{spec_version})")
-        load_dependency("winrm-fs", spec_version)
+        logger.debug("chef-winrm-fs requested," \
+          " loading Chef::WinRM::FS gem (#{spec_version})")
+        load_dependency("chef-winrm-fs", spec_version)
 
         spec_version = WINRM_ELEVATED_SPEC_VERSION.dup
-        logger.debug("winrm-elevated requested," \
-          " loading WinRM-elevated gem (#{spec_version})")
-        load_dependency("winrm-elevated", spec_version)
+        logger.debug("chef-winrm-elevated requested," \
+          " loading Chef-WinRM-elevated gem (#{spec_version})")
+        load_dependency("chef-winrm-elevated", spec_version)
       end
 
       def load_dependency(gem_name, spec_version)
