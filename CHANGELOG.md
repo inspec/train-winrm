@@ -1,26 +1,23 @@
-<!-- latest_release 0.2.17 -->
-## [v0.2.17](https://github.com/inspec/train-winrm/tree/v0.2.17) (2025-02-06)
-
-#### Merged Pull Requests
-- Updating for rexml cve inclusion [#39](https://github.com/inspec/train-winrm/pull/39) ([johnmccrae](https://github.com/johnmccrae))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=0.2.13 -->
-### Changes since 0.2.13 release
-
-#### Merged Pull Requests
-- Updating for rexml cve inclusion [#39](https://github.com/inspec/train-winrm/pull/39) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.2.17 -->
-- CHEF-7501: Configures sonarqube for code coverage analysis [#36](https://github.com/inspec/train-winrm/pull/36) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.16 -->
-- Remove ruby 2.5 and 2.6 test  [#38](https://github.com/inspec/train-winrm/pull/38) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.15 -->
-- Fix the verify pipeline failng with cannot load such file -- mocha/setup (LoadError) [#37](https://github.com/inspec/train-winrm/pull/37) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.14 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v0.2.17](https://github.com/inspec/train-winrm/tree/v0.2.17) (2025-02-10)
+
+#### Merged Pull Requests
+- Fix the verify pipeline failng with cannot load such file -- mocha/setup (LoadError) [#37](https://github.com/inspec/train-winrm/pull/37) ([Vasu1105](https://github.com/Vasu1105))
+- Remove ruby 2.5 and 2.6 test  [#38](https://github.com/inspec/train-winrm/pull/38) ([Vasu1105](https://github.com/Vasu1105))
+- CHEF-7501: Configures sonarqube for code coverage analysis [#36](https://github.com/inspec/train-winrm/pull/36) ([Vasu1105](https://github.com/Vasu1105))
+- Updating for rexml cve inclusion [#39](https://github.com/inspec/train-winrm/pull/39) ([johnmccrae](https://github.com/johnmccrae))
+<!-- latest_stable_release -->
+
 ## [v0.2.13](https://github.com/inspec/train-winrm/tree/v0.2.13) (2022-02-25)
 
 #### Merged Pull Requests
 - CFINSPEC-2 Added options to allow SSL connection with certificates [#34](https://github.com/inspec/train-winrm/pull/34) ([Nik08](https://github.com/Nik08))
-<!-- latest_stable_release -->
 
 ## [v0.2.12](https://github.com/inspec/train-winrm/tree/v0.2.12) (2021-01-29)
 
