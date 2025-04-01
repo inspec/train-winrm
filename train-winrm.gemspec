@@ -38,4 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "chef-winrm", "~> 2.3.12" # This version is required to support Ruby 3.0
   spec.add_dependency "chef-winrm-elevated", "~> 1.2.5"
   spec.add_dependency "chef-winrm-fs", "~> 1.3.7"
+
+  # Gem dependency needed with Ruby 3.4 upgrade
+  spec.add_dependency "syslog", "~> 0.1"
 end
