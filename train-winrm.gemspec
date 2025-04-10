@@ -41,8 +41,4 @@ Gem::Specification.new do |spec|
 
   # Gem dependency needed with Ruby 3.4 upgrade
   spec.add_dependency "syslog", "~> 0.1"
-  spec.add_dependency "csv", "~> 3.0"
-  spec.add_dependency "ostruct", "~> 0.1.0"
-  spec.add_dependency "fiddle", "~> 1.0"
-  spec.add_dependency "ffi", "~> 1.0" # dependency of fiddle
 end
