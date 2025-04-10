@@ -38,11 +38,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "chef-winrm", ">= 2.3.11"
   spec.add_dependency "chef-winrm-elevated", ">= 1.2.5"
   spec.add_dependency "chef-winrm-fs", ">= 1.3.7"
-
-  # Gem dependency needed with Ruby 3.4 upgrade
-  spec.add_dependency "syslog", "~> 0.1"
-  spec.add_dependency "csv", "~> 3.0"
-  spec.add_dependency "ostruct", "~> 0.1.0"
-  spec.add_dependency "fiddle", "~> 1.0"
-  spec.add_dependency "ffi", "~> 1.0" # dependency of fiddle
 end
