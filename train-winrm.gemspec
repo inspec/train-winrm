@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
 
   # Do not list inspec as a dependency of a train plugin.
   # Do not list train or train-core as a dependency of a train plugin.
-  spec.add_dependency "chef-winrm", ">= 2.3.11"
-  spec.add_dependency "chef-winrm-elevated", ">= 1.2.5"
-  spec.add_dependency "chef-winrm-fs", ">= 1.3.7"
+  # spec.add_dependency "chef-winrm", "~> 2.3.11"
+  spec.add_dependency "chef-winrm-elevated", "~> 1.2.5"
+  spec.add_dependency "chef-winrm-fs", "~> 1.3.7"
 end

@@ -23,3 +23,7 @@ group :development do
   gem "chefstyle"
   gem "chef-winrm-elevated"
 end
+
+gem "chef-gyoku", git: "https://github.com/chef/chef-gyoku", branch: "jfm/inspec-ruby-3-plus"
+
+gem "chef-winrm", git: "https://github.com/chef/chef-winrm", branch: "jfm/inspec-ruby-3-plus"
