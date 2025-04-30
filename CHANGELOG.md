@@ -1,14 +1,15 @@
-<!-- latest_release 0.2.18 -->
-## [v0.2.18](https://github.com/inspec/train-winrm/tree/v0.2.18) (2025-04-09)
+<!-- latest_release 0.2.19 -->
+## [v0.2.19](https://github.com/inspec/train-winrm/tree/v0.2.19) (2025-04-30)
 
 #### Merged Pull Requests
-- Update sonar scanner version [#41](https://github.com/inspec/train-winrm/pull/41) ([Vasu1105](https://github.com/Vasu1105))
+- Dependencies version pinning changes [#43](https://github.com/inspec/train-winrm/pull/43) ([Nik08](https://github.com/Nik08))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.2.17 -->
 ### Changes since 0.2.17 release
 
 #### Merged Pull Requests
+- Dependencies version pinning changes [#43](https://github.com/inspec/train-winrm/pull/43) ([Nik08](https://github.com/Nik08)) <!-- 0.2.19 -->
 - Update sonar scanner version [#41](https://github.com/inspec/train-winrm/pull/41) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.2.18 -->
 <!-- release_rollup -->
 
