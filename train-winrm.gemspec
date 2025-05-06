@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Allows applictaions using Train to speak to Windows using Remote Management; handles authentication, cacheing, and SDK dependency management."
   spec.homepage      = "https://github.com/inspec/train-winrm"
   spec.license       = "Apache-2.0"
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
   # Though complicated-looking, this is pretty standard for a gemspec.
   # It just filters what will actually be packaged in the gem (leaving
   # out tests, etc)
