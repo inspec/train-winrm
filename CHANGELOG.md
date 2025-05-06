@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.2.20 -->
+## [v0.2.20](https://github.com/inspec/train-winrm/tree/v0.2.20) (2025-05-06)
+
+#### Merged Pull Requests
+- Drop support for Ruby 3.0  [#42](https://github.com/inspec/train-winrm/pull/42) ([Nik08](https://github.com/Nik08))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.2.19 -->
+### Changes since 0.2.19 release
+
+#### Merged Pull Requests
+- Drop support for Ruby 3.0  [#42](https://github.com/inspec/train-winrm/pull/42) ([Nik08](https://github.com/Nik08)) <!-- 0.2.20 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
