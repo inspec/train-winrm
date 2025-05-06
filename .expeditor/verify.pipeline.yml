@@ -1,14 +1,6 @@
 ---
 steps:
 
-- label: run-tests-ruby-3.0
-  command:
-    - /workdir/.expeditor/buildkite/verify.sh
-  expeditor:
-    executor:
-      docker:
-        image: ruby:3.0
-
 - label: run-tests-ruby-3.1
   command:
     - /workdir/.expeditor/buildkite/verify.sh
@@ -16,16 +8,6 @@ steps:
     executor:
       docker:
         image: ruby:3.1
-
-- label: run-specs-ruby-3.0-windows
-  commands:
-   - .expeditor/buildkite/verify.ps1
-  expeditor:
-   executor:
-      docker:
-        host_os: windows
-        shell: ["powershell", "-Command"]
-        image: rubydistros/windows-2019:3.0
 
 - label: run-specs-ruby-3.1-windows
   commands:
