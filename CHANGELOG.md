@@ -1,26 +1,23 @@
-<!-- latest_release 0.3.1 -->
-## [v0.3.1](https://github.com/inspec/train-winrm/tree/v0.3.1) (2025-05-06)
-
-#### Merged Pull Requests
-- [DO NOT MERGE] CHEF-19302 Ruby 3.4 upgrade [#40](https://github.com/inspec/train-winrm/pull/40) ([Vasu1105](https://github.com/Vasu1105))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=0.2.19 -->
-### Changes since 0.2.19 release
-
-#### Merged Pull Requests
-- [DO NOT MERGE] CHEF-19302 Ruby 3.4 upgrade [#40](https://github.com/inspec/train-winrm/pull/40) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.3.1 -->
-- Manually bump minor version in train-winrm [#44](https://github.com/inspec/train-winrm/pull/44) ([Nik08](https://github.com/Nik08)) <!-- 0.3.0 -->
-- Drop support for Ruby 3.0  [#42](https://github.com/inspec/train-winrm/pull/42) ([Nik08](https://github.com/Nik08)) <!-- 0.2.20 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v0.3.1](https://github.com/inspec/train-winrm/tree/v0.3.1) (2025-06-10)
+
+#### Merged Pull Requests
+- Drop support for Ruby 3.0  [#42](https://github.com/inspec/train-winrm/pull/42) ([Nik08](https://github.com/Nik08))
+- Manually bump minor version in train-winrm [#44](https://github.com/inspec/train-winrm/pull/44) ([Nik08](https://github.com/Nik08))
+- [DO NOT MERGE] CHEF-19302 Ruby 3.4 upgrade [#40](https://github.com/inspec/train-winrm/pull/40) ([Vasu1105](https://github.com/Vasu1105))
+<!-- latest_stable_release -->
+
 ## [v0.2.19](https://github.com/inspec/train-winrm/tree/v0.2.19) (2025-04-30)
 
 #### Merged Pull Requests
 - Update sonar scanner version [#41](https://github.com/inspec/train-winrm/pull/41) ([Vasu1105](https://github.com/Vasu1105))
 - Dependencies version pinning changes [#43](https://github.com/inspec/train-winrm/pull/43) ([Nik08](https://github.com/Nik08))
-<!-- latest_stable_release -->
 
 ## [v0.2.17](https://github.com/inspec/train-winrm/tree/v0.2.17) (2025-02-10)
 
