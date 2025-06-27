@@ -62,7 +62,7 @@ end
 # #------------------------------------------------------------------#
 # #                    Code Style Tasks
 # #------------------------------------------------------------------#
-require "chefstyle"
+require "cookstyle/chefstyle"
 require "rubocop/rake_task"
 
 RuboCop::RakeTask.new(:lint) do |task|

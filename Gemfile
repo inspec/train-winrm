@@ -20,6 +20,7 @@ group :development do
   gem "mocha"
   gem "pry"
   gem "rake"
-  gem "chefstyle"
+  gem "cookstyle", ">= 7.32.8"
   gem "chef-winrm-elevated"
+  gem "syslog"
 end
