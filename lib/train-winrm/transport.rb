@@ -117,6 +117,10 @@ module TrainPlugins
           raise Train::ClientError, "Unsupported winrm shell type: #{winrm_shell_type.inspect}"
         end
 
+        # Set scheme, port, endpoint
+        scheme = opts[:ssl] ? "https" : "http"
+        port = opts[:port] || (opts[:ssl] ? 5986 : 5985)
+
         # remove leading '/'
         path = (opts[:path] || "").sub(%r{^/+}, "")
 
