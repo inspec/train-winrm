@@ -128,6 +128,19 @@ module TrainPlugins
         path = (opts[:path] || "").sub(%r{^/+}, "")
 
         opts[:endpoint] = "#{scheme}://#{opts[:host]}:#{port}/#{path}"
+
+        # Auto-detect realm when not provided
+        if winrm_transport == :kerberos && opts[:kerberos_realm].nil?
+          begin
+            krb_realm = File.read("/etc/krb5.conf")[/default_realm\s*=\s*(\S+)/i, 1]
+            if krb_realm
+              opts[:kerberos_realm] = krb_realm
+              logger.debug("Kerberos realm auto-detected: #{krb_realm}")
+            end
+          rescue => e
+            logger.warn("Could not auto-detect Kerberos realm: #{e.message}")
+          end
+        end
       end
 
       WINRM_FS_SPEC_VERSION = ">= 1.3.7".freeze
