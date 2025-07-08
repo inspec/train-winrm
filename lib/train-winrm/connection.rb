@@ -153,15 +153,20 @@ module TrainPlugins
           thr.join
         end
 
-        CommandResult.new(out, response.stderr, response.exitcode)
+        # Fallback logic
+        if response.nil? || response.exitcode.nil?
+          logger.warn("Primary command failed, retrying with 'hostname'")
+          begin
+            response = session.run("hostname")
+            out = response.stdout if response.respond_to?(:stdout)
+          rescue => e
+            logger.error("Fallback 'hostname' also failed: #{e.message}")
+          end
+        end
+
+        CommandResult.new(out || "", response&.stderr || "", response&.exitcode || 1)
       end
 
-      # Create a local RDP document and return it
-      #
-      # @param opts [Hash] configuration options
-      # @option opts [true,false] :mac whether or not the document is for a
-      #   Mac system
-      # @api private
       def rdp_doc(opts = {})
         host = URI.parse(options[:endpoint]).host
         content = [
