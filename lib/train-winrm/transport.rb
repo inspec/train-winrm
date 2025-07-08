@@ -107,16 +107,17 @@ module TrainPlugins
       def validate_options(opts)
         super(opts)
 
-        # set scheme and port based on ssl activation
-        scheme = opts[:ssl] ? "https" : "http"
-        port = opts[:port]
-        port = (opts[:ssl] ? 5986 : 5985) if port.nil?
-        winrm_transport = opts[:winrm_transport].to_sym
+        # Normalize to symbols
+        opts[:winrm_transport] = opts[:winrm_transport].to_s.downcase.to_sym if opts[:winrm_transport]
+        opts[:winrm_shell_type] = opts[:winrm_shell_type].to_s.downcase.to_sym if opts[:winrm_shell_type]
+
+        winrm_transport = opts[:winrm_transport]
+        winrm_shell_type = opts[:winrm_shell_type]
+
         unless SUPPORTED_WINRM_TRANSPORTS.include?(winrm_transport)
           raise Train::ClientError, "Unsupported transport type: #{winrm_transport.inspect}"
         end
 
-        winrm_shell_type = opts[:winrm_shell_type].to_sym
         unless SUPPORTED_WINRM_SHELL_TYPES.include?(winrm_shell_type)
           raise Train::ClientError, "Unsupported winrm shell type: #{winrm_shell_type.inspect}"
         end
@@ -139,7 +140,7 @@ module TrainPlugins
       def connection_options(opts)
         {
           logger: logger,
-          transport: opts[:winrm_transport].to_sym,
+          transport: opts[:winrm_transport],
           disable_sspi: opts[:winrm_disable_sspi],
           basic_auth_only: opts[:winrm_basic_auth_only],
           hostname: opts[:host],
