@@ -106,7 +106,7 @@ module TrainPlugins
         scheme = opts[:ssl] ? "https" : "http"
         port = opts[:port]
         port = (opts[:ssl] ? 5986 : 5985) if port.nil?
-        winrm_transport = opts[:winrm_transport].to_sym
+        opts[:winrm_transport] = opts[:winrm_transport].to_s.downcase.to_sym
         unless SUPPORTED_WINRM_TRANSPORTS.include?(winrm_transport)
           raise Train::ClientError, "Unsupported transport type: #{winrm_transport.inspect}"
         end
