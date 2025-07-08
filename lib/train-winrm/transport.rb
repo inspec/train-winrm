@@ -175,6 +175,9 @@ module TrainPlugins
           client_cert: opts[:client_cert],
           client_key: opts[:client_key],
           key_pass: opts[:client_key_pass],
+          socks_proxy: opts[:socks_proxy],
+          socks_user: opts[:socks_user],
+          socks_password: opts[:socks_password],
         }
       end
 
