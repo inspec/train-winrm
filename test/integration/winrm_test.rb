@@ -188,6 +188,79 @@ describe "windows winrm command" do
     end
   end
 
+  describe "winrm with SOCKS5H proxy" do
+    let(:proxy_host) { "127.0.0.1" }
+    let(:proxy_port) { "1080" }
+    let(:proxy_url)  { "#{proxy_host}:#{proxy_port}" }
+    let(:proxy_user) { "proxyuser" }
+    let(:proxy_pass) { "proxypass" }
+
+    it "connects without proxy (default)" do
+      config = Train.target_config(target: ENV["TRAIN_WINRM_TARGET"], password: ENV["TRAIN_WINRM_PASSWORD"])
+      conn = Train.create("winrm", config).connection
+      _(conn).wont_be_nil
+      conn.close
+    end
+
+    it "connects with SOCKS5H proxy" do
+      config = Train.target_config(
+        target: ENV["TRAIN_WINRM_TARGET"],
+        password: ENV["TRAIN_WINRM_PASSWORD"],
+        socks_proxy: proxy_url
+      )
+      conn = Train.create("winrm", config).connection
+      _(conn).wont_be_nil
+      conn.close
+    end
+
+    it "connects with SOCKS5H proxy and credentials" do
+      config = Train.target_config(
+        target: ENV["TRAIN_WINRM_TARGET"],
+        password: ENV["TRAIN_WINRM_PASSWORD"],
+        socks_proxy: proxy_url,
+        socks_user: proxy_user,
+        socks_password: proxy_pass
+      )
+      conn = Train.create("winrm", config).connection
+      _(conn).wont_be_nil
+      conn.close
+    end
+
+    it "runs WinRM command through proxy" do
+      config = Train.target_config(
+        target: ENV["TRAIN_WINRM_TARGET"],
+        password: ENV["TRAIN_WINRM_PASSWORD"],
+        socks_proxy: proxy_url
+      )
+      conn = Train.create("winrm", config).connection
+      cmd = conn.run_command('Write-Output "proxy test"')
+      _(cmd.stdout).must_include "proxy test"
+      conn.close
+    end
+
+    it "fails gracefully if proxy is unreachable" do
+      config = Train.target_config(
+        target: ENV["TRAIN_WINRM_TARGET"],
+        password: ENV["TRAIN_WINRM_PASSWORD"],
+        socks_proxy: "127.0.0.1:9999" # Unused port
+      )
+      assert_raises(StandardError) do
+        Train.create("winrm", config).connection.run_command("echo fail")
+      end
+    end
+
+    it "resolves remote DNS via SOCKS5H" do
+      config = Train.target_config(
+        target: "winrm://my-remote-host", # Use a hostname, not IP
+        password: ENV["TRAIN_WINRM_PASSWORD"],
+        socks_proxy: proxy_url
+      )
+      conn = Train.create("winrm", config).connection
+      _(conn).wont_be_nil
+      conn.close
+    end
+  end
+
   after do
     # close the connection
     conn.close
