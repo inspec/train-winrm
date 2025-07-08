@@ -79,6 +79,11 @@ module TrainPlugins
       option :client_key , default: nil
       option :client_key_pass , default: nil
 
+      # new socks proxy options
+      option :socks_proxy, default: nil
+      option :socks_user, default: nil
+      option :socks_password, default: nil
+
       def initialize(opts)
         super(opts)
         load_needed_dependencies!
