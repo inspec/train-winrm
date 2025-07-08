@@ -41,4 +41,5 @@ Gem::Specification.new do |spec|
 
   # Gem dependency needed with Ruby 3.4 upgrade
   spec.add_dependency "syslog", "~> 0.1"
+  spec.add_dependency "socksify", "~> 1.7"
 end
