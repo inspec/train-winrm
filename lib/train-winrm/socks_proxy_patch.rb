@@ -18,7 +18,7 @@ class SocksProxyPatch
     # Extract the host and port from the SOCKS proxy address.
     proxy_host, proxy_port = socks_proxy.split(":")
     TCPSocket.socks_server = proxy_host
-    TCPSocket.socks_port   = proxy_port
+    TCPSocket.socks_port   = proxy_port.to_i
 
     # Patch the `HTTPClient::Session` class to use the SOCKS proxy.
     HTTPClient::Session.class_eval do
