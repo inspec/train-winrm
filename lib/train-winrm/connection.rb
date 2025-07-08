@@ -50,6 +50,25 @@ module TrainPlugins
         @max_wait_until_ready   = @options.delete(:max_wait_until_ready)
         @operation_timeout      = @options.delete(:operation_timeout)
         @shell_type             = @options.delete(:winrm_shell_type)
+
+        # SOCKS proxy patch for HTTPClient
+        if @options[:socks_proxy]
+          require "socksify"
+          require "httpclient"
+
+          proxy_host, proxy_port = @options[:socks_proxy].split(":")
+          TCPSocket.socks_server = proxy_host
+          TCPSocket.socks_port   = proxy_port
+
+          HTTPClient::Session.class_eval do
+            unless method_defined?(:original_create_socket)
+              alias_method :original_create_socket, :create_socket
+              def create_socket(host, port, *args)
+                ::TCPSocket.new(host, port)
+              end
+            end
+          end
+        end
       end
 
       # (see Base::Connection#close)
