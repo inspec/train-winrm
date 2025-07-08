@@ -35,6 +35,7 @@ require "train"
 require "train/plugins"
 # This module may need to directly require WinRM to reference its exception classes
 require "chef-winrm" unless defined?(WinRM)
+require_relative "socks_proxy_patch"
 
 module TrainPlugins
   module WinRM
@@ -43,6 +44,7 @@ module TrainPlugins
       attr_reader :hostname
       def initialize(options)
         super(options)
+        TrainPlugins::WinRM::SocksProxyPatch.apply!
         @hostname               = @options.delete(:hostname)
         @rdp_port               = @options.delete(:rdp_port)
         @connection_retries     = @options.delete(:connection_retries)
