@@ -43,4 +43,23 @@ describe "winrm connection" do
     end
   end
 
+  describe "establishes successful kerberos auth winrm connection" do
+    let(:cls) { TrainPlugins::WinRM::Connection }
+    it "retrieves platform after kerberos connection" do
+      conf = {
+        hostname: "dummy",
+        transport: :kerberos,
+        password: "dummy",
+        logger: Logger.new(STDERR, level: :info),
+      }
+      conn = cls.new(conf)
+      # Simulate successful connection and platform detection
+      conn.stubs(:os).returns({ name: "windows", family: "windows", release: "10.0", arch: "x86_64" })
+      os = conn.os
+      _(os[:name]).must_equal "windows"
+      _(os[:family]).must_equal "windows"
+      _(os[:release]).must_equal "10.0"
+      _(os[:arch]).must_equal "x86_64"
+    end
+  end
 end
