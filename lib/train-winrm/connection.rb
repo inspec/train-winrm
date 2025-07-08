@@ -227,16 +227,25 @@ module TrainPlugins
       # @api private
       def session(retry_options = {})
         @session ||= begin
-          opts = {
-            retry_limit: @connection_retries.to_i,
-            retry_delay: @connection_retry_sleep.to_i,
-          }.merge(retry_options)
+                       opts = {
+                         retry_limit: @connection_retries.to_i,
+                         retry_delay: @connection_retry_sleep.to_i,
+                       }.merge(retry_options)
 
-          opts[:operation_timeout] = @operation_timeout unless @operation_timeout.nil?
-          @service = ::WinRM::Connection.new(options.merge(opts))
-          @service.logger = logger
-          @service.shell(@shell_type)
-        end
+                       opts[:operation_timeout] = @operation_timeout unless @operation_timeout.nil?
+
+                       # Kerberos support: allow token-only auth
+                       if options[:transport] == :kerberos
+                         if !options.key?(:password) && ENV["KRB5CCNAME"]
+                           logger.debug("Kerberos ticket cache detected: #{ENV["KRB5CCNAME"]}")
+                           options[:password] = nil
+                         end
+                       end
+
+                       @service = ::WinRM::Connection.new(options.merge(opts))
+                       @service.logger = logger
+                       @service.shell(@shell_type)
+                     end
       end
 
       # String representation of object, reporting its connection details and
