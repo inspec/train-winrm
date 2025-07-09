@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.3.2 -->
+## [v0.3.2](https://github.com/inspec/train-winrm/tree/v0.3.2) (2025-07-09)
+
+#### Merged Pull Requests
+- Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.3.1 -->
+### Changes since 0.3.1 release
+
+#### Merged Pull Requests
+- Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.3.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
