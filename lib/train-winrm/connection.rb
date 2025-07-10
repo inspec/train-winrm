@@ -31,6 +31,8 @@
 # * marshalling to / from JSON
 # You don't have to worry about most of this.
 
+# frozen_string_literal: true
+
 require "train"
 require "train/plugins"
 # This module may need to directly require WinRM to reference its exception classes
@@ -110,7 +112,7 @@ module TrainPlugins
 
       private
 
-      PING_COMMAND = "Write-Host '[WinRM] Established\n'".freeze
+      PING_COMMAND = "Write-Host '[WinRM] Established\n'"
 
       def file_via_connection(path)
         Train::File::Remote::Windows.new(self, path)
@@ -120,7 +122,7 @@ module TrainPlugins
         return if command.nil?
 
         logger.debug("[WinRM] #{self} (#{command})")
-        out = ""
+        out = +""
         response = nil
         timeout = opts[:timeout]&.to_i
 

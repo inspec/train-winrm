@@ -40,6 +40,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "chef-winrm-fs", "~> 1.4.0" # This version supports Ruby 3.4
 
   # Gem dependency needed with Ruby 3.4 upgrade
-  spec.add_dependency "syslog", "~> 0.1"
   spec.add_dependency "socksify", "~> 1.7"
 end

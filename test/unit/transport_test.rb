@@ -1,6 +1,6 @@
 # rubocop: disable Metrics/BlockLength
 
-require_relative "./helper"
+require_relative "helper"
 require "train-winrm/transport"
 require "logger"
 
