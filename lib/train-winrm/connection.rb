@@ -52,6 +52,12 @@ module TrainPlugins
         @max_wait_until_ready   = @options.delete(:max_wait_until_ready)
         @operation_timeout      = @options.delete(:operation_timeout)
         @shell_type             = @options.delete(:winrm_shell_type)
+
+        # SOCKS proxy patch for HTTPClient
+        if @options[:socks_proxy]
+          require_relative "socks_proxy_patch"
+          SocksProxyPatch.apply(@options[:socks_proxy])
+        end
       end
 
       # (see Base::Connection#close)
