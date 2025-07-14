@@ -17,11 +17,27 @@ class SocksProxyPatch
   # @example
   #   SocksProxyPatch.apply("127.0.0.1:1080")
   def self.apply(socks_proxy)
-    require "socksify"
-    require "httpclient"
+    new(socks_proxy).apply
+  end
 
-    # Extract the host and port from the SOCKS proxy address.
+  def initialize(socks_proxy)
+    @socks_proxy = socks_proxy
+  end
+
+  def apply
+    @proxy_host, @proxy_port = parse_and_validate_proxy(socks_proxy)
+    configure_socks
+    patch_http_client
+  end
+
+  private
+
+  attr_reader :socks_proxy, :proxy_host, :proxy_port
+
+  # Parses the proxy string and validates its format, DNS resolution, and port.
+  def parse_and_validate_proxy(socks_proxy)
     proxy_host, proxy_port = socks_proxy.split(":")
+    proxy_host = proxy_host.to_i
 
     unless proxy_host && proxy_port
       raise Train::ClientError, "Invalid SOCKS proxy format: '#{socks_proxy}'. Expected format is 'host:port'."
@@ -56,6 +72,7 @@ class SocksProxyPatch
   def configure_socks
     TCPSocket.socks_server = proxy_host
     TCPSocket.socks_port   = proxy_port
+  end
 
   # Patches HTTPClient to route all connections through the SOCKS proxy.
   def patch_http_client
