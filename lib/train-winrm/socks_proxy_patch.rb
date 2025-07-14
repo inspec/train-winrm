@@ -32,7 +32,22 @@ class SocksProxyPatch
 
         # Override the `create_socket` method to use `TCPSocket` with SOCKS proxy.
         def create_socket(host, port, *args)
-          ::TCPSocket.new(host, port)
+          socket = ::TCPSocket.new(host, port)
+          socket.setsockopt(Socket::SOL_SOCKET, Socket::SO_RCVTIMEO, [5, 0].pack("l_2"))
+          socket.setsockopt(Socket::SOL_SOCKET, Socket::SO_SNDTIMEO, [5, 0].pack("l_2"))
+          socket
+        rescue HTTPClient::ConnectTimeoutError
+          raise Train::ClientError, "SOCKS proxy connection to #{host}:#{port} timed out (HTTPClient::ConnectTimeoutError)"
+        rescue Errno::ETIMEDOUT
+          raise Train::ClientError, "Connection to #{host}:#{port} timed out through SOCKS proxy."
+        rescue Errno::EHOSTUNREACH, Errno::ENETUNREACH
+          raise Train::ClientError, "Network unreachable when connecting to #{host}:#{port} via SOCKS proxy."
+        rescue Errno::ECONNREFUSED
+          raise Train::ClientError, "Connection refused by SOCKS proxy when connecting to #{host}:#{port}."
+        rescue SocketError => e
+          raise Train::ClientError, "Socket error while connecting to #{host}:#{port} via SOCKS proxy: #{e.message}"
+        rescue StandardError => e
+          raise Train::ClientError, "Unexpected error during SOCKS proxy connection: #{e.class} - #{e.message}"
         end
       end
     end
