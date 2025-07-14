@@ -55,9 +55,10 @@ class SocksProxyPatch
   # Applies the validated proxy settings to TCPSocket.
   def configure_socks
     TCPSocket.socks_server = proxy_host
-    TCPSocket.socks_port   = proxy_port.to_i
+    TCPSocket.socks_port   = proxy_port
 
-    # Patch the `HTTPClient::Session` class to use the SOCKS proxy.
+  # Patches HTTPClient to route all connections through the SOCKS proxy.
+  def patch_http_client
     HTTPClient::Session.class_eval do
       unless method_defined?(:original_create_socket)
         alias_method :original_create_socket, :create_socket
