@@ -3,7 +3,12 @@
 # Patches the `HTTPClient` and `TCPSocket` classes to use a SOCKS5H proxy.
 # This class modifies the behavior of `HTTPClient` to route HTTP requests
 # through a SOCKS proxy by overriding the socket creation method.
-# It also configures `TCPSocket` to use the specified SOCKS proxy server.
+# It also configures `TCPSocket` to use the specified SOCKS proxy server,
+# and validates that the provided proxy is correct, resolvable, and accessible.
+
+require "socksify"
+require "httpclient"
+require "socket" unless defined?(Socket)
 
 class SocksProxyPatch
   # Applies the SOCKS proxy settings to `HTTPClient` and `TCPSocket`.
