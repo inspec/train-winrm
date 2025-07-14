@@ -22,6 +22,38 @@ class SocksProxyPatch
 
     # Extract the host and port from the SOCKS proxy address.
     proxy_host, proxy_port = socks_proxy.split(":")
+
+    unless proxy_host && proxy_port
+      raise Train::ClientError, "Invalid SOCKS proxy format: '#{socks_proxy}'. Expected format is 'host:port'."
+    end
+
+    validate_dns_resolution(proxy_host)
+    port = validate_port(proxy_port)
+
+    [proxy_host, port]
+  end
+
+  # Checks if the hostname is resolvable.
+  def validate_dns_resolution(host)
+    Socket.getaddrinfo(host, nil)
+  rescue SocketError => e
+    raise Train::ClientError, "DNS resolution failed for SOCKS proxy host '#{host}': #{e.message}"
+  end
+
+  # Ensures port is a valid integer in range.
+  def validate_port(port_str)
+    port = Integer(port_str)
+    unless port.between?(1, 65535)
+      raise Train::ClientError, "SOCKS proxy port '#{port}' is out of valid range (1-65535)."
+    end
+
+    port
+  rescue ArgumentError
+    raise Train::ClientError, "Invalid SOCKS proxy port '#{port_str}'. Port must be an integer."
+  end
+
+  # Applies the validated proxy settings to TCPSocket.
+  def configure_socks
     TCPSocket.socks_server = proxy_host
     TCPSocket.socks_port   = proxy_port.to_i
 
