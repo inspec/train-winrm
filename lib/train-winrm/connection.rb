@@ -56,7 +56,7 @@ module TrainPlugins
         # SOCKS proxy patch for HTTPClient
         if @options[:socks_proxy]
           require_relative "socks_proxy_patch"
-          SocksProxyPatch.apply(@options[:socks_proxy])
+          SocksProxyPatch.apply(@options[:socks_proxy], socks_user: @options[:socks_user], socks_password: @options[:socks_password])
         end
       end
 

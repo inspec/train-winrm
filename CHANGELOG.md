@@ -1,14 +1,15 @@
-<!-- latest_release 0.3.2 -->
-## [v0.3.2](https://github.com/inspec/train-winrm/tree/v0.3.2) (2025-07-09)
+<!-- latest_release 0.3.3 -->
+## [v0.3.3](https://github.com/inspec/train-winrm/tree/v0.3.3) (2025-07-11)
 
 #### Merged Pull Requests
-- Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105))
+- Upgrade to GitHub-native Dependabot [#30](https://github.com/inspec/train-winrm/pull/30) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.3.1 -->
 ### Changes since 0.3.1 release
 
 #### Merged Pull Requests
+- Upgrade to GitHub-native Dependabot [#30](https://github.com/inspec/train-winrm/pull/30) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.3.3 -->
 - Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.3.2 -->
 <!-- release_rollup -->
 
