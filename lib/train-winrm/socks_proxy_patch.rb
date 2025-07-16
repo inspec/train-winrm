@@ -74,6 +74,8 @@ class SocksProxyPatch
 
   # Applies the validated proxy settings to TCPSocket.
   def configure_socks
+    TCPSocket.socks_username = socks_user if socks_user
+    TCPSocket.socks_password = socks_password if socks_password
     TCPSocket.socks_server = proxy_host
     TCPSocket.socks_port   = proxy_port
   end
