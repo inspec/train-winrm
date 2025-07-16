@@ -11,7 +11,7 @@ class SocksProxyPatch
   # @param socks_proxy [String] The SOCKS proxy address in the format `host:port`.
   # @example
   #   SocksProxyPatch.apply("127.0.0.1:1080")
-  def self.apply(socks_proxy)
+  def self.apply(socks_proxy, socks_user: nil, socks_password: nil)
     require "socksify"
     require "httpclient"
 
@@ -19,6 +19,8 @@ class SocksProxyPatch
     proxy_host, proxy_port = socks_proxy.split(":")
     TCPSocket.socks_server = proxy_host
     TCPSocket.socks_port   = proxy_port.to_i
+    TCPSocket.socks_username = socks_user if socks_user
+    TCPSocket.socks_password = socks_password if socks_password
 
     # Patch the `HTTPClient::Session` class to use the SOCKS proxy.
     HTTPClient::Session.class_eval do
