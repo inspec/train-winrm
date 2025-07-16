@@ -29,7 +29,7 @@ class SocksProxyPatch
   end
 
   def apply
-    @proxy_host, @proxy_port = parse_and_validate_proxy(socks_proxy)
+    @proxy_host, @proxy_port = parse_and_validate_proxy(@socks_proxy)
     configure_socks
     patch_http_client
   end
@@ -63,7 +63,7 @@ class SocksProxyPatch
   # Ensures port is a valid integer in range.
   def validate_port(port_str)
     port = Integer(port_str)
-    unless port.between?(1, 65535)
+    unless port.between?(1, 65_535)
       raise Train::ClientError, "SOCKS proxy port '#{port}' is out of valid range (1-65535)."
     end
 
