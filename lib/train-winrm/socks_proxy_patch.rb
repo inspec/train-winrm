@@ -14,14 +14,18 @@ class SocksProxyPatch
   # Applies the SOCKS proxy settings to `HTTPClient` and `TCPSocket`.
   #
   # @param socks_proxy [String] The SOCKS proxy address in the format `host:port`.
+  # @param socks_user [String, nil] Optional SOCKS proxy username.
+  # @param socks_password [String, nil] Optional SOCKS proxy password.
   # @example
-  #   SocksProxyPatch.apply("127.0.0.1:1080")
-  def self.apply(socks_proxy)
-    new(socks_proxy).apply
+  #   SocksProxyPatch.apply(socks_proxy: "127.0.0.1:1080", socks_user: "user", socks_password: "pass")
+  def self.apply(socks_proxy:, socks_user: nil, socks_password: nil)
+    new(socks_proxy: socks_proxy, socks_user: socks_user, socks_password: socks_password).apply
   end
 
-  def initialize(socks_proxy)
+  def initialize(socks_proxy:, socks_user:, socks_password:)
     @socks_proxy = socks_proxy
+    @socks_user = socks_user
+    @socks_password = socks_password
   end
 
   def apply
@@ -32,7 +36,7 @@ class SocksProxyPatch
 
   private
 
-  attr_reader :socks_proxy, :proxy_host, :proxy_port
+  attr_reader :proxy_host, :proxy_port, :socks_user, :socks_password
 
   # Parses the proxy string and validates its format, DNS resolution, and port.
   def parse_and_validate_proxy(socks_proxy)
