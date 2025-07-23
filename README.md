@@ -105,6 +105,36 @@ Several other options exist. To see these options, run:
 puts Train.options('winrm')
 ```
 
+### Example CLI usage with Kerberos and SOCKS5 proxy:
+
+```
+inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user@win-dc-01.inspec.dev \
+  --password 'XXXX' \
+  --kerberos_service host \
+  --kerberos_realm INSPEC.DEV \
+  --winrm_transport kerberos \
+  --socks_proxy localhost:1080
+```
+
+### Ruby usage with SOCKS5 and Kerberos:
+
+```
+require 'train'
+transport = Train.create(
+  'winrm',
+  host: 'win-dc-01.inspec.dev',
+  user: 'user',
+  password: 'XXXX',
+  winrm_transport: 'kerberos',
+  kerberos_service: 'host',
+  kerberos_realm: 'INSPEC.DEV',
+  socks_proxy: 'localhost:1080',
+  socks_user: 'my_socks_user',
+  socks_password: 'my_socks_pass'
+)
+conn = transport.connection
+```
+
 ## Reporting Issues
 
 Bugs, typos, limitations, and frustrations are welcome to be reported through the [GitHub issues page for the train-winrm project](https://github.com/inspec/train-winrm/issues).
