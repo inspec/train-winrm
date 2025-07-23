@@ -47,10 +47,23 @@ class SocksProxyPatch
       raise Train::ClientError, "Invalid SOCKS proxy format: '#{socks_proxy}'. Expected format is 'host:port'."
     end
 
+    port = validate_port(proxy_port)
     validate_dns_resolution(proxy_host)
     port = validate_port(proxy_port)
 
     [proxy_host, port]
+  end
+
+  # Ensures port is a valid integer in range.
+  def validate_port(port_str)
+    port = Integer(port_str)
+    unless port.between?(1, 65_535)
+      raise Train::ClientError, "SOCKS proxy port '#{port}' is out of valid range (1-65535)."
+    end
+
+    port
+  rescue ArgumentError
+    raise Train::ClientError, "Invalid SOCKS proxy port '#{port_str}'. Port must be an integer."
   end
 
   # Checks if the hostname is resolvable.
