@@ -85,7 +85,7 @@ Optional `String`. The SPN service name, such as `host`.
 
 ### winrm_transport
 
-Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`, etc. Set to `kerberos` to use Kerberos authentication.
+Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`. Set to `kerberos` to use Kerberos authentication.
 
 ### socks_proxy
 
