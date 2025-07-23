@@ -75,6 +75,30 @@ Optional `String`, password used for sign in. None sent if not provided.
 
 Optional `Boolean`. Defaults to `false`. Determines whether to use SSL to encrypt communications.
 
+### kerberos_realm
+
+Optional `String`. Specifies the Kerberos realm (e.g., `INSPEC.DEV`). Required if using `kerberos` transport.
+
+### kerberos_service
+
+Optional `String`. The SPN service name, such as `host`.
+
+### winrm_transport
+
+Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`, etc. Set to `kerberos` to use Kerberos authentication.
+
+### socks_proxy
+
+Optional `String`. SOCKS5 proxy in format `host:port`, e.g., `localhost:1080`. Useful when tunneling WinRM over a SOCKS5 proxy.
+
+### socks_user
+
+Optional `String`. Username for SOCKS proxy authentication.
+
+### socks_password
+
+Optional `String`. Password for SOCKS proxy authentication.
+
 Several other options exist. To see these options, run:
 
 ```
