@@ -41,7 +41,7 @@ class SocksProxyPatch
   # Parses the proxy string and validates its format, DNS resolution, and port.
   def parse_and_validate_proxy(socks_proxy)
     proxy_host, proxy_port = socks_proxy.split(":")
-    proxy_port = proxy_port.to_i
+    proxy_port = proxy_port.to_i unless proxy_port.nil?
 
     unless proxy_host && proxy_port
       raise Train::ClientError, "Invalid SOCKS proxy format: '#{socks_proxy}'. Expected format is 'host:port'."
@@ -49,7 +49,6 @@ class SocksProxyPatch
 
     port = validate_port(proxy_port)
     validate_dns_resolution(proxy_host)
-    port = validate_port(proxy_port)
 
     [proxy_host, port]
   end
