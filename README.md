@@ -89,7 +89,9 @@ Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`, etc. Set 
 
 ### socks_proxy
 
-Optional `String`. SOCKS5 proxy in format `host:port`, e.g., `localhost:1080`. Useful when tunneling WinRM over a SOCKS5 proxy.
+Optional `String`. SOCKS5H proxy in format `host:port`, e.g., `localhost:1080`. Useful when tunneling WinRM over a SOCKS5 proxy.
+
+**Note:** Only SOCKS5H proxies are supported. HTTP proxies or chained proxies are not currently supported.
 
 ### socks_user
 
@@ -108,23 +110,23 @@ puts Train.options('winrm')
 ### Example CLI usage with Kerberos and SOCKS5 proxy:
 
 ```
-inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user@win-dc-01.inspec.dev \
-  --password 'XXXX' \
+inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user01@win-dc-01.inspec.dev \
+  --password 'XXXXXXX \
   --kerberos_service host \
   --kerberos_realm INSPEC.DEV \
   --winrm_transport kerberos \
   --socks_proxy localhost:1080
 ```
 
-### Ruby usage with SOCKS5 and Kerberos:
+### Ruby usage with SOCKS5H and Kerberos:
 
 ```
 require 'train'
 transport = Train.create(
   'winrm',
   host: 'win-dc-01.inspec.dev',
-  user: 'user',
-  password: 'XXXX',
+  user: 'user01',
+  password: 'XXXXXXX,
   winrm_transport: 'kerberos',
   kerberos_service: 'host',
   kerberos_realm: 'INSPEC.DEV',
