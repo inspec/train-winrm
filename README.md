@@ -85,7 +85,7 @@ Optional `String`. The SPN service name, such as `host`.
 
 ### winrm_transport
 
-Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`, etc. Set to `kerberos` to use Kerberos authentication.
+Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`. Set to `kerberos` to use Kerberos authentication.
 
 ### socks_proxy
 
@@ -109,7 +109,7 @@ puts Train.options('winrm')
 
 ### Example CLI usage with Kerberos and SOCKS5 proxy:
 
-```
+```shell
 inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user01@win-dc-01.inspec.dev \
   --password 'XXXXXXX \
   --kerberos_service host \
@@ -120,7 +120,7 @@ inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user01@
 
 ### Ruby usage with SOCKS5H and Kerberos:
 
-```
+```ruby
 require 'train'
 transport = Train.create(
   'winrm',
