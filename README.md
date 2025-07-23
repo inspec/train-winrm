@@ -135,6 +135,17 @@ transport = Train.create(
 conn = transport.connection
 ```
 
+## Troubleshooting SOCKS5H Proxy Connections
+
+If you encounter issues when connecting through a SOCKS5H proxy:
+
+- **DNS resolution failed**: Verify the proxy hostname is resolvable from the client machine.
+- **Connection refused**: Confirm the proxy server is running and accessible on the provided port.
+- **Authentication failures**: Double-check the `socks_user` and `socks_password` values.
+- **Timeouts**: Ensure proper network routes exist and the firewall isn't blocking traffic.
+
+Only SOCKS5H proxies are supported. HTTP or chained proxy types are not supported at this time.
+
 ## Reporting Issues
 
 Bugs, typos, limitations, and frustrations are welcome to be reported through the [GitHub issues page for the train-winrm project](https://github.com/inspec/train-winrm/issues).
