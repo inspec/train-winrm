@@ -72,18 +72,6 @@ class SocksProxyPatch
     raise Train::ClientError, "DNS resolution failed for SOCKS proxy host '#{host}': #{e.message}"
   end
 
-  # Ensures port is a valid integer in range.
-  def validate_port(port_str)
-    port = Integer(port_str)
-    unless port.between?(1, 65_535)
-      raise Train::ClientError, "SOCKS proxy port '#{port}' is out of valid range (1-65535)."
-    end
-
-    port
-  rescue ArgumentError
-    raise Train::ClientError, "Invalid SOCKS proxy port '#{port_str}'. Port must be an integer."
-  end
-
   # Applies the validated proxy settings to TCPSocket.
   def configure_socks
     TCPSocket.socks_username = socks_user if socks_user
