@@ -90,4 +90,34 @@ describe "winrm transport" do
       _(proc { winrm.connection }).must_raise Train::ClientError
     end
   end
+
+  describe "kerberos realm defaults" do
+    let(:cls) { TrainPlugins::WinRM::Transport }
+    it "auto-detects kerberos realm if not provided" do
+      conf = {
+        host: "dummy",
+        winrm_transport: :kerberos,
+        password: "dummy",
+      }
+      File.stubs(:read).with("/etc/krb5.conf").returns("default_realm = EXAMPLE.COM")
+      winrm = cls.new(conf)
+      conn = winrm.connection
+      options = conn.instance_variable_get(:@options)
+      _(options[:realm]).must_equal "EXAMPLE.COM"
+    end
+  end
+
+  # test/unit/transport_test.rb
+  describe "winrm_transport parsing" do
+    let(:cls) { TrainPlugins::WinRM::Transport }
+    it "parses winrm_transport and does not default to negotiate" do
+      conf = {
+        host: "dummy",
+        winrm_transport: :kerberos,
+        password: "dummy",
+      }
+      winrm = cls.new(conf)
+      _(winrm.options[:winrm_transport]).must_equal :kerberos
+    end
+  end
 end

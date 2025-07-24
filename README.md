@@ -75,11 +75,78 @@ Optional `String`, password used for sign in. None sent if not provided.
 
 Optional `Boolean`. Defaults to `false`. Determines whether to use SSL to encrypt communications.
 
+### kerberos_realm
+
+Optional `String`. Specifies the Kerberos realm (e.g., `INSPEC.DEV`). Required if using `kerberos` transport.
+
+### kerberos_service
+
+Optional `String`. The SPN service name, such as `host`.
+
+### winrm_transport
+
+Optional `String`. Can be `negotiate`, `ssl`, `plaintext`, `kerberos`. Set to `kerberos` to use Kerberos authentication.
+
+### socks_proxy
+
+Optional `String`. SOCKS5H proxy in format `host:port`, e.g., `localhost:1080`. Useful when tunneling WinRM over a SOCKS5 proxy.
+
+**Note:** Only SOCKS5H proxies are supported. HTTP proxies or chained proxies are not currently supported.
+
+### socks_user
+
+Optional `String`. Username for SOCKS proxy authentication.
+
+### socks_password
+
+Optional `String`. Password for SOCKS proxy authentication.
+
 Several other options exist. To see these options, run:
 
 ```
 puts Train.options('winrm')
 ```
+
+### Example CLI usage with Kerberos and SOCKS5 proxy:
+
+```shell
+inspec exec https://github.com/dev-sec/windows-patch-baseline -t winrm://user01@win-dc-01.inspec.dev \
+  --password 'XXXXXXX \
+  --kerberos_service host \
+  --kerberos_realm INSPEC.DEV \
+  --winrm_transport kerberos \
+  --socks_proxy localhost:1080
+```
+
+### Ruby usage with SOCKS5H and Kerberos:
+
+```ruby
+require 'train'
+transport = Train.create(
+  'winrm',
+  host: 'win-dc-01.inspec.dev',
+  user: 'user01',
+  password: 'XXXXXXX,
+  winrm_transport: 'kerberos',
+  kerberos_service: 'host',
+  kerberos_realm: 'INSPEC.DEV',
+  socks_proxy: 'localhost:1080',
+  socks_user: 'my_socks_user',
+  socks_password: 'my_socks_pass'
+)
+conn = transport.connection
+```
+
+## Troubleshooting SOCKS5H Proxy Connections
+
+If you encounter issues when connecting through a SOCKS5H proxy:
+
+- **DNS resolution failed**: Verify the proxy hostname is resolvable from the client machine.
+- **Connection refused**: Confirm the proxy server is running and accessible on the provided port.
+- **Authentication failures**: Double-check the `socks_user` and `socks_password` values.
+- **Timeouts**: Ensure proper network routes exist and the firewall isn't blocking traffic.
+
+Only SOCKS5H proxies are supported. HTTP or chained proxy types are not supported at this time.
 
 ## Reporting Issues
 
