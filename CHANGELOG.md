@@ -1,12 +1,15 @@
-<!-- latest_release 0.3.5 -->
-## [v0.3.5](https://github.com/inspec/train-winrm/tree/v0.3.5) (2025-08-18)
+<!-- latest_release 0.4.0 -->
+## [v0.4.0](https://github.com/inspec/train-winrm/tree/v0.4.0) (2025-08-19)
 
-#### Merged Pull Requests
-- CHEF-24678 - Remove standalone DCO file [#53](https://github.com/inspec/train-winrm/pull/53) ([nandanhegde73](https://github.com/nandanhegde73))
+#### New Features
+- CHEF-20643, CHEF-21059, CHEF-21058, CHEF-23072 socks5h with kerberos support [#49](https://github.com/inspec/train-winrm/pull/49) ([sathish-progress](https://github.com/sathish-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.3.1 -->
 ### Changes since 0.3.1 release
+
+#### New Features
+- CHEF-20643, CHEF-21059, CHEF-21058, CHEF-23072 socks5h with kerberos support [#49](https://github.com/inspec/train-winrm/pull/49) ([sathish-progress](https://github.com/sathish-progress)) <!-- 0.4.0 -->
 
 #### Merged Pull Requests
 - CHEF-24678 - Remove standalone DCO file [#53](https://github.com/inspec/train-winrm/pull/53) ([nandanhegde73](https://github.com/nandanhegde73)) <!-- 0.3.5 -->
