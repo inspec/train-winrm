@@ -1,31 +1,28 @@
-<!-- latest_release 0.4.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v0.4.0](https://github.com/inspec/train-winrm/tree/v0.4.0) (2025-08-19)
 
 #### New Features
 - CHEF-20643, CHEF-21059, CHEF-21058, CHEF-23072 socks5h with kerberos support [#49](https://github.com/inspec/train-winrm/pull/49) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
-
-<!-- release_rollup since=0.3.1 -->
-### Changes since 0.3.1 release
-
-#### New Features
-- CHEF-20643, CHEF-21059, CHEF-21058, CHEF-23072 socks5h with kerberos support [#49](https://github.com/inspec/train-winrm/pull/49) ([sathish-progress](https://github.com/sathish-progress)) <!-- 0.4.0 -->
 
 #### Merged Pull Requests
-- CHEF-24678 - Remove standalone DCO file [#53](https://github.com/inspec/train-winrm/pull/53) ([nandanhegde73](https://github.com/nandanhegde73)) <!-- 0.3.5 -->
-- CHEF-21404 Enable CI for trufflelog scanning [#45](https://github.com/inspec/train-winrm/pull/45) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.3.4 -->
-- Upgrade to GitHub-native Dependabot [#30](https://github.com/inspec/train-winrm/pull/30) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.3.3 -->
-- Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105)) <!-- 0.3.2 -->
-<!-- release_rollup -->
-
+- Update to cookstyle [#46](https://github.com/inspec/train-winrm/pull/46) ([Vasu1105](https://github.com/Vasu1105))
+- Upgrade to GitHub-native Dependabot [#30](https://github.com/inspec/train-winrm/pull/30) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- CHEF-21404 Enable CI for trufflelog scanning [#45](https://github.com/inspec/train-winrm/pull/45) ([Vasu1105](https://github.com/Vasu1105))
+- CHEF-24678 - Remove standalone DCO file [#53](https://github.com/inspec/train-winrm/pull/53) ([nandanhegde73](https://github.com/nandanhegde73))
 <!-- latest_stable_release -->
+
 ## [v0.3.1](https://github.com/inspec/train-winrm/tree/v0.3.1) (2025-06-10)
 
 #### Merged Pull Requests
 - Drop support for Ruby 3.0  [#42](https://github.com/inspec/train-winrm/pull/42) ([Nik08](https://github.com/Nik08))
 - Manually bump minor version in train-winrm [#44](https://github.com/inspec/train-winrm/pull/44) ([Nik08](https://github.com/Nik08))
 - [DO NOT MERGE] CHEF-19302 Ruby 3.4 upgrade [#40](https://github.com/inspec/train-winrm/pull/40) ([Vasu1105](https://github.com/Vasu1105))
-<!-- latest_stable_release -->
 
 ## [v0.2.19](https://github.com/inspec/train-winrm/tree/v0.2.19) (2025-04-30)
 
