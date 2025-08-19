@@ -52,6 +52,9 @@ module TrainPlugins
         @max_wait_until_ready   = @options.delete(:max_wait_until_ready)
         @operation_timeout      = @options.delete(:operation_timeout)
         @shell_type             = @options.delete(:winrm_shell_type)
+
+        # SOCKS proxy patch for HTTPClient
+        apply_socks_proxy_patch if @options[:socks_proxy]
       end
 
       # (see Base::Connection#close)
@@ -234,6 +237,16 @@ module TrainPlugins
           @service.logger = logger
           @service.shell(@shell_type)
         end
+      end
+
+      def apply_socks_proxy_patch
+        require_relative "socks_proxy_patch"
+
+        ::SocksProxyPatch.apply(
+          socks_proxy: @options[:socks_proxy],
+          socks_user: @options[:socks_user],
+          socks_password: @options[:socks_password]
+        )
       end
 
       # String representation of object, reporting its connection details and

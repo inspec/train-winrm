@@ -35,10 +35,10 @@ Gem::Specification.new do |spec|
 
   # Do not list inspec as a dependency of a train plugin.
   # Do not list train or train-core as a dependency of a train plugin.
-  spec.add_dependency "chef-winrm", "~> 2.4" # This version supports Ruby 3.4
+  spec.add_dependency "chef-winrm", "~> 2.4.4" # This version supports Ruby 3.4
   spec.add_dependency "chef-winrm-elevated", "~> 1.2.5"
-  spec.add_dependency "chef-winrm-fs", "~> 1.4.0" # This version supports Ruby 3.4
+  spec.add_dependency "chef-winrm-fs", "~> 1.4.1" # This version supports Ruby 3.4
 
   # Gem dependency needed with Ruby 3.4 upgrade
-  # spec.add_dependency "syslog", "~> 0.1"
+  spec.add_dependency "socksify", "~> 1.8"
 end

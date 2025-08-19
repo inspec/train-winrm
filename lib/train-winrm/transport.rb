@@ -79,6 +79,11 @@ module TrainPlugins
       option :client_key , default: nil
       option :client_key_pass , default: nil
 
+      # new socks proxy options
+      option :socks_proxy, default: nil
+      option :socks_user, default: nil
+      option :socks_password, default: nil
+
       def initialize(opts)
         super(opts)
         load_needed_dependencies!
@@ -102,24 +107,40 @@ module TrainPlugins
       def validate_options(opts)
         super(opts)
 
-        # set scheme and port based on ssl activation
-        scheme = opts[:ssl] ? "https" : "http"
-        port = opts[:port]
-        port = (opts[:ssl] ? 5986 : 5985) if port.nil?
-        winrm_transport = opts[:winrm_transport].to_sym
+        # Normalize to symbols
+        opts[:winrm_transport] = opts[:winrm_transport].to_s.downcase.to_sym if opts[:winrm_transport]
+        opts[:winrm_shell_type] = opts[:winrm_shell_type].to_s.downcase.to_sym if opts[:winrm_shell_type]
+
+        winrm_transport = opts[:winrm_transport]
+        winrm_shell_type = opts[:winrm_shell_type]
+
         unless SUPPORTED_WINRM_TRANSPORTS.include?(winrm_transport)
           raise Train::ClientError, "Unsupported transport type: #{winrm_transport.inspect}"
         end
 
-        winrm_shell_type = opts[:winrm_shell_type].to_sym
         unless SUPPORTED_WINRM_SHELL_TYPES.include?(winrm_shell_type)
           raise Train::ClientError, "Unsupported winrm shell type: #{winrm_shell_type.inspect}"
         end
 
-        # remove leading '/'
+        # Set scheme, port, endpoint
+        scheme = opts[:ssl] ? "https" : "http"
+        port = opts[:port] || (opts[:ssl] ? 5986 : 5985)
         path = (opts[:path] || "").sub(%r{^/+}, "")
 
         opts[:endpoint] = "#{scheme}://#{opts[:host]}:#{port}/#{path}"
+
+        # Auto-detect realm when not provided
+        if winrm_transport == :kerberos && opts[:kerberos_realm].nil?
+          begin
+            krb_realm = File.read("/etc/krb5.conf")[/default_realm\s*=\s*(\S+)/i, 1]
+            if krb_realm
+              opts[:kerberos_realm] = krb_realm
+              logger.debug("Kerberos realm auto-detected: #{krb_realm}")
+            end
+          rescue => e
+            logger.warn("Could not auto-detect Kerberos realm: #{e.message}")
+          end
+        end
       end
 
       WINRM_FS_SPEC_VERSION = ">= 1.3.7".freeze
@@ -134,7 +155,7 @@ module TrainPlugins
       def connection_options(opts)
         {
           logger: logger,
-          transport: opts[:winrm_transport].to_sym,
+          transport: opts[:winrm_transport],
           disable_sspi: opts[:winrm_disable_sspi],
           basic_auth_only: opts[:winrm_basic_auth_only],
           hostname: opts[:host],
@@ -154,6 +175,9 @@ module TrainPlugins
           client_cert: opts[:client_cert],
           client_key: opts[:client_key],
           key_pass: opts[:client_key_pass],
+          socks_proxy: opts[:socks_proxy],
+          socks_user: opts[:socks_user],
+          socks_password: opts[:socks_password],
         }
       end
 
