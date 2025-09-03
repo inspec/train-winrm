@@ -3,10 +3,6 @@
 [![Gem Version](https://badge.fury.io/rb/train-winrm.svg)](https://badge.fury.io/rb/train-winrm)
 [![Build status](https://badge.buildkite.com/f293066ffe281ec41dc14fe941a2bafbdfa8110c0cd4024c88.svg?branch=master)](https://buildkite.com/chef-oss/inspec-train-winrm-master-verify)
 
-* **Project State: Active**
-* **Issues Response SLA: 3 business days**
-* **Pull Request Response SLA: 3 business days**
-
 This plugin allows applications that rely on Train to communicate with the WinRM API.  For example, you could use this to audit Windows Server 2016 machines.
 
 This plugin relies on the `chef-winrm` and `chef-winrm-fs` gems for implementation.
