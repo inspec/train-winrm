@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.4.1 -->
+## [v0.4.1](https://github.com/inspec/train-winrm/tree/v0.4.1) (2025-11-18)
+
+#### Merged Pull Requests
+- add GH copilot instructions [#56](https://github.com/inspec/train-winrm/pull/56) ([sathish-progress](https://github.com/sathish-progress))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.4.0 -->
+### Changes since 0.4.0 release
+
+#### Merged Pull Requests
+- add GH copilot instructions [#56](https://github.com/inspec/train-winrm/pull/56) ([sathish-progress](https://github.com/sathish-progress)) <!-- 0.4.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
