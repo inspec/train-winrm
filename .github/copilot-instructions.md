@@ -230,12 +230,16 @@ For local development against related gems (for example, `winrm`), use `path:` o
 
 ### 4. Committing the Code
 
+**CRITICAL: Before committing, check "Files and Areas to Avoid Modifying" section**
+
 ```
 git checkout -b <JIRA_ID-or-topic>
-git add -A
+git add <only-files-that-should-be-committed>
 git commit -s -m "feat(train-winrm): <short description>"
 ```
 
+* **NEVER use `git add -A` or `git add .`** - Always explicitly add only the files that should be committed
+* **`Gemfile.lock` is already in `.gitignore`** - Git will not track it, so just don't add it
 * Keep code, tests, and documentation in logical commits.
 * **Prompt:** **Code committed Successfully.** Next step: Create PR with GitHub CLI. Other steps remaining: PR Creation → Update JIRA Ticket. Do you want to continue with PR creation?
 
@@ -300,7 +304,11 @@ rm -f pr_template.md
 
 * `VERSION` (if release-managed)
 * CI/release automation files (Expeditor or GitHub Actions) unless explicitly required
-* `Gemfile.lock` and any auto-generated files
+* **`Gemfile.lock`**: Already in `.gitignore` - Git will automatically ignore it
+  * When updating gems in `Gemfile`, only commit the `Gemfile` changes
+  * `Gemfile.lock` is auto-generated locally but not tracked in the repository
+  * Each developer/CI regenerates their own `Gemfile.lock` via `bundle install`
+* Other auto-generated and gitignored files (unless specifically required by the task)
 
 ---
 
