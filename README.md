@@ -173,3 +173,6 @@ Run `bundle exec rake test:unit` to run the unit tests.
 Install Vagrant and VirtualBox. Check the Vagrantfile to verify that it references a Windows 2016 evaluation VagrantBox to which you have access.
 
 Then, run `bundle exec rake test:integration`. There are sub-tasks you can use to run only the integration tests; to see a list of all tasks, run `rake -aT`.
+
+# Copyright
+See [COPYRIGHT.md](./COPYRIGHT.md).
