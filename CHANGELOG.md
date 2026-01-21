@@ -1,20 +1,18 @@
-<!-- latest_release 0.4.3 -->
-## [v0.4.3](https://github.com/inspec/train-winrm/tree/v0.4.3) (2026-01-21)
-
-#### Merged Pull Requests
-- allow newer chef-winrm* gem versions [#61](https://github.com/inspec/train-winrm/pull/61) ([Stromweld](https://github.com/Stromweld))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=0.4.0 -->
-### Changes since 0.4.0 release
-
-#### Merged Pull Requests
-- allow newer chef-winrm* gem versions [#61](https://github.com/inspec/train-winrm/pull/61) ([Stromweld](https://github.com/Stromweld)) <!-- 0.4.3 -->
-- remove stub block for latest mini-test compatibility [#62](https://github.com/inspec/train-winrm/pull/62) ([sathish-progress](https://github.com/sathish-progress)) <!-- 0.4.2 -->
-- add GH copilot instructions [#56](https://github.com/inspec/train-winrm/pull/56) ([sathish-progress](https://github.com/sathish-progress)) <!-- 0.4.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v0.4.3](https://github.com/inspec/train-winrm/tree/v0.4.3) (2026-01-21)
+
+#### Merged Pull Requests
+- add GH copilot instructions [#56](https://github.com/inspec/train-winrm/pull/56) ([sathish-progress](https://github.com/sathish-progress))
+- remove stub block for latest mini-test compatibility [#62](https://github.com/inspec/train-winrm/pull/62) ([sathish-progress](https://github.com/sathish-progress))
+- allow newer chef-winrm* gem versions [#61](https://github.com/inspec/train-winrm/pull/61) ([Stromweld](https://github.com/Stromweld))
+<!-- latest_stable_release -->
+
 ## [v0.4.0](https://github.com/inspec/train-winrm/tree/v0.4.0) (2025-08-19)
 
 #### New Features
@@ -25,7 +23,6 @@
 - Upgrade to GitHub-native Dependabot [#30](https://github.com/inspec/train-winrm/pull/30) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - CHEF-21404 Enable CI for trufflelog scanning [#45](https://github.com/inspec/train-winrm/pull/45) ([Vasu1105](https://github.com/Vasu1105))
 - CHEF-24678 - Remove standalone DCO file [#53](https://github.com/inspec/train-winrm/pull/53) ([nandanhegde73](https://github.com/nandanhegde73))
-<!-- latest_stable_release -->
 
 ## [v0.3.1](https://github.com/inspec/train-winrm/tree/v0.3.1) (2025-06-10)
 
