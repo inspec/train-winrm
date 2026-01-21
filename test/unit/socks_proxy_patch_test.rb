@@ -7,10 +7,9 @@ require_relative "../../lib/train-winrm/socks_proxy_patch"
 
 class SocksProxyPatchTest < Minitest::Test
   def test_applies_patch_with_valid_proxy
-    Socket.stub :getaddrinfo, [["AF_INET", "127.0.0.1", "localhost", "127.0.0.1"]] do
-      assert_silent do
-        SocksProxyPatch.apply(socks_proxy: "127.0.0.1:1080")
-      end
+    Socket.stubs(:getaddrinfo).returns([["AF_INET", "127.0.0.1", "localhost", "127.0.0.1"]])
+    assert_silent do
+      SocksProxyPatch.apply(socks_proxy: "127.0.0.1:1080")
     end
   end
 
@@ -29,11 +28,10 @@ class SocksProxyPatchTest < Minitest::Test
   end
 
   def test_rejects_unresolvable_host
-    Socket.stub :getaddrinfo, ->(*) { raise SocketError, "no address for bad.host" } do
-      error = assert_raises(Train::ClientError) do
-        SocksProxyPatch.apply(socks_proxy: "bad.host:1080")
-      end
-      assert_match(/DNS resolution failed/, error.message)
+    Socket.stubs(:getaddrinfo).raises(SocketError, "no address for bad.host")
+    error = assert_raises(Train::ClientError) do
+      SocksProxyPatch.apply(socks_proxy: "bad.host:1080")
     end
+    assert_match(/DNS resolution failed/, error.message)
   end
 end
